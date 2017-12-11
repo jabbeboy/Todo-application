@@ -33,6 +33,11 @@ function updateTask($task) {
     return db_connection()->update_task($task);
 }
 
+function addUser($user) {
+    var_dump($user);
+    return db_connection()->insert_user($user);
+}
+
 function setTaskStatus($task) {
     return db_connection()->update_task_status($task);
 }

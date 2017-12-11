@@ -30,7 +30,7 @@ class Database {
     }
 
     public function select_user($name) {
-        $statement = "SELECT id, name FROM users WHERE name = :name";
+        $statement = "SELECT name FROM users WHERE name = :name";
         $param = array(
             ':name' => $name
         );
@@ -60,6 +60,15 @@ class Database {
         $query = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetch();
+    }
+
+    public function insert_user($user) {
+        echo $user;
+        $statement = "INSERT INTO users (name) VALUES (:name)";
+        $query = $this->db->prepare($statement);
+        $param = array(
+            ':name' => $user);
+        return $query->execute($param);
     }
 
     public function insert_task(array $task) {

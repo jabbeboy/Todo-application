@@ -17,7 +17,6 @@ if (isset($_POST['choose'])) {
         setcookie("current_user", $_POST['name'], time() + (86400 * 30), "/");
     }
 
-// Redirect to todo list
     header("Location: todolist.php");
 }
 
@@ -26,10 +25,9 @@ if (isset($_COOKIE['current_user'])) {
 
     // Set current user session from cookie
     $session->setSession($_COOKIE['current_user']);
+    header("Location: todolist.php");
 }
 
-// Redirect to todo list
-header("Location: todolist.php");
 
 
 

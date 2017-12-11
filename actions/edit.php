@@ -37,7 +37,9 @@ if (isset($_SESSION['current_user'])) {
     <div class="edit_page">
 
         <div class="panel panel-default">
-            <div class="panel-heading"><h3>Edit</h3></div>
+            <div class="panel-heading">
+                <h2>Edit</h2>
+            </div>
 
             <form id="edit_task_form" method="post" action="">
                 <div class="panel-body">
