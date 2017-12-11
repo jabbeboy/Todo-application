@@ -19,8 +19,9 @@ if (isset($_SESSION['current_user'])) {
             'author' => $_SESSION['current_user'],
             'added_date' => date("Y-m-d"),
             'end_date' => $_POST['end_date'],
-            'finished' => $_POST['status']
+            'finished' => $_POST['finished']
         ];
+
         updateTask($task);
         header("Location: ../todolist.php");
     }
@@ -68,10 +69,10 @@ if (isset($_SESSION['current_user'])) {
 
                 <div class="row">
                     <div class="col-sm-3">
-                        <label for="status">Status: (select one):</label>
-                        <select class="form-control form-control-lg" name="status">
-                            <option value="0" >0 - Ongoing</option>
-                            <option value="1" >1 - Finished</option>
+                        <label for="finished">Status:</label>
+                        <select class="form-control form-control-lg" name="finished">
+                            <option value="0">Ongoing</option>
+                            <option value="1">Finished</option>
                         </select>
                     </div>
                 </div>

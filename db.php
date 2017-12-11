@@ -40,10 +40,8 @@ class Database {
     }
 
     public function select_tasks($user) {
-        $statement = "SELECT id, title, description, author, added_date, end_date, finished FROM tasks WHERE author = :author ORDER BY end_date DESC";
-        $param = array(
-            ':author' => $user
-        );
+        $statement = "SELECT id, title, description, author, added_date, end_date, finished FROM tasks WHERE author = :author"; //ORDER BY end_date DESC";
+        $param = array(':author' => $user);
         $query = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetchAll();
@@ -53,10 +51,7 @@ class Database {
         $statement = "SELECT id, title, description, author, added_date, end_date, finished 
                       FROM tasks 
                       WHERE id = :id AND author = :author";
-        $param = array(
-            ':id' => $id,
-            ':author' => $user
-        );
+        $param = array(':id' => $id, ':author' => $user);
         $query = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetch();
@@ -72,6 +67,8 @@ class Database {
     }
 
     public function insert_task(array $task) {
+        var_dump($task);
+
         $statement = "INSERT INTO tasks (title, description, author, added_date, end_date, finished) 
                       VALUES (:title, :description, :author, :added_date, :end_date, :finished)";
         $query = $this->db->prepare($statement);
@@ -83,6 +80,8 @@ class Database {
             ':end_date' => $task['end_date'],
             ':finished' => $task['finished']
         );
+
+        var_dump($param);
         return $query->execute($param);
     }
 

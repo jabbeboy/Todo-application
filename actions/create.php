@@ -11,6 +11,7 @@ if (!$session->sessionIsSet()) {
 if (isset($_POST['addtask'])) {
 
     $name = $_SESSION['current_user'];
+
     $task = [
         'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
         'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),

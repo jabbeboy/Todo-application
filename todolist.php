@@ -34,19 +34,17 @@ if (!$session->sessionIsSet()) {
                     ."<th></th>"
                     ."<th></th>"
                     ."</tr>"
-                    ."</thead>";
-
-                echo "<tbody>";
+                    ."</thead><tbody>";
 
                 foreach (getTasks($_SESSION['current_user']) as $task) {
                     echo "<tr>";
 
-                    // Tasks with finished status 1
                     if ($task->finished == 1) {
                         echo "<td><span class='label label-success'>Finished</span></td>";
                     }
-                    else
+                    else {
                         echo "<td><span class='label label-warning'>Ongoing</span></td>";
+                    }
 
                     echo "<td>X</td>";
 
@@ -56,7 +54,6 @@ if (!$session->sessionIsSet()) {
                             data-content='<p>$task->description</p><p><b>Added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p></p>'>$task->title</a>
                         </td>
                       </div>";
-
 
                     echo "<td><a class='btn btn-success btn-primary-spacing' name='completed' href='actions/completed.php?id=".$task->id."'>
                             <span class='glyphicon glyphicon-check'></span> Completed
