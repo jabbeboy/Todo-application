@@ -13,11 +13,19 @@ class Database {
     }
 
     public function connect() {
-
         try {
             $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT);
             // Creates a new PDO database connection
-            $this->db = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS, $options);
+            $this->db = new PDO(
+                DSN,
+                DB_USER,
+                DB_PASS,
+                $options);
+
+            $init = file_get_contents(DB_INIT_FILE);
+            $this->db->exec($init);
+
+            // Connection successful
             $this->conn_status = true;
         }
         catch (PDOException $e) {
@@ -58,7 +66,6 @@ class Database {
     }
 
     public function insert_user($user) {
-        echo $user;
         $statement = "INSERT INTO users (name) VALUES (:name)";
         $query = $this->db->prepare($statement);
         $param = array(
@@ -67,8 +74,6 @@ class Database {
     }
 
     public function insert_task(array $task) {
-        var_dump($task);
-
         $statement = "INSERT INTO tasks (title, description, author, added_date, end_date, finished) 
                       VALUES (:title, :description, :author, :added_date, :end_date, :finished)";
         $query = $this->db->prepare($statement);
@@ -80,8 +85,6 @@ class Database {
             ':end_date' => $task['end_date'],
             ':finished' => $task['finished']
         );
-
-        var_dump($param);
         return $query->execute($param);
     }
 
@@ -115,7 +118,6 @@ class Database {
             ':author' => $task['author'],
             ':finished' => $task['finished']
         );
-        var_dump($query);
         return $query->execute($param);
     }
 

@@ -15,7 +15,7 @@ if (!$session->sessionIsSet()) {
     <div class="todo_page">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2><?php echo $_SESSION['current_user']; ?></h2>
+                <h2><b><?php echo $_SESSION['current_user']; ?></b></h2>
             </div>
             <div class="panel-body">
             <?php
@@ -29,10 +29,9 @@ if (!$session->sessionIsSet()) {
                 echo "<table class='table table-borderless table-condensed table-hover'>"
                     ."<thead>"
                     ."<tr>"
-                    ."<th></th>"
-                    ."<th></th>"
-                    ."<th></th>"
-                    ."<th></th>"
+                    ."<th>Status</th>"
+                    ."<th>Title</th>"
+                    ."<th>Action</th>"
                     ."</tr>"
                     ."</thead><tbody>";
 
@@ -46,17 +45,21 @@ if (!$session->sessionIsSet()) {
                         echo "<td><span class='label label-warning'>Ongoing</span></td>";
                     }
 
-                    echo "<td>X</td>";
-
                     echo "<div class='container'>
                         <td>
-                            <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' title='". $task->title ."' 
-                            data-content='<p>$task->description</p><p><b>Added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p></p>'>$task->title</a>
+                            <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto' title='". $task->title ."' 
+                            data-content='
+                            <p>$task->description</p>
+                            <p><b>Added: </b>$task->added_date</p>
+                            <p><b>End date: </b>$task->end_date</p>
+                            </p>'>$task->title</a>
                         </td>
                       </div>";
 
+                    echo "<hr />";
+
                     echo "<td><a class='btn btn-success btn-primary-spacing' name='completed' href='actions/completed.php?id=".$task->id."'>
-                            <span class='glyphicon glyphicon-check'></span> Completed
+                            <span class='glyphicon glyphicon-check'></span> Finished
                         </a>
                         <a class='btn btn-info btn-primary-spacing' name='edit' href='actions/edit.php?id=".$task->id."'>
                             <span class='glyphicon glyphicon-edit'></span> Edit
