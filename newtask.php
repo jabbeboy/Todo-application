@@ -17,7 +17,7 @@ if (!$session->sessionIsSet()) {
                 <h2>New task</h2>
             </div>
 
-            <form id="newtask_form" method="post" action="actions/create.php">
+            <form id="newtask_form" method="post" action="create.php">
 
                 <div class="panel-body">
                     <div class="form-group">
@@ -31,10 +31,15 @@ if (!$session->sessionIsSet()) {
                     </div>
 
                     <div class="row">
-                        <div class='col-sm-6'>
+                        <div class='col-sm-3'>
                             <div class="form-group">
-                                <label for="end_date">End date:</label>
-                                <input type='text' id="end_date" name="end_date" class="form-control" value="2017-12-10" placeholder="YYYY-MM-DD"/>
+                                <label for="datepicker">End date:</label>
+                                <div class='input-group date' id='datepicker'>
+                                    <input type='text' name="end_date" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -48,7 +48,7 @@ class Database {
     }
 
     public function select_tasks($user) {
-        $statement = "SELECT id, title, description, author, added_date, end_date, finished FROM tasks WHERE author = :author"; //ORDER BY end_date DESC";
+        $statement = "SELECT id, title, description, author, added_date, end_date, status FROM tasks WHERE author = :author"; //ORDER BY end_date DESC";
         $param = array(':author' => $user);
         $query = $this->db->prepare($statement);
         $query->execute($param);
@@ -56,7 +56,7 @@ class Database {
     }
 
     public function select_task($id, $user) {
-        $statement = "SELECT id, title, description, author, added_date, end_date, finished 
+        $statement = "SELECT id, title, description, author, added_date, end_date, status 
                       FROM tasks 
                       WHERE id = :id AND author = :author";
         $param = array(':id' => $id, ':author' => $user);
@@ -74,8 +74,8 @@ class Database {
     }
 
     public function insert_task(array $task) {
-        $statement = "INSERT INTO tasks (title, description, author, added_date, end_date, finished) 
-                      VALUES (:title, :description, :author, :added_date, :end_date, :finished)";
+        $statement = "INSERT INTO tasks (title, description, author, added_date, end_date, status) 
+                      VALUES (:title, :description, :author, :added_date, :end_date, :status)";
         $query = $this->db->prepare($statement);
         $param = array(
             ':title' => $task['title'],
@@ -83,7 +83,7 @@ class Database {
             ':author' => $task['author'],
             ':added_date' => $task['added_date'],
             ':end_date' => $task['end_date'],
-            ':finished' => $task['finished']
+            ':status' => $task['status']
         );
         return $query->execute($param);
     }
@@ -93,7 +93,7 @@ class Database {
                           description = :description,
                           added_date = :added_date,
                           end_date = :end_date,
-                          finished = :finished
+                          status = :status
                           WHERE id = :id AND author = :author";
         $query = $this->db->prepare($statement);
         $param = array(
@@ -103,20 +103,20 @@ class Database {
             ':author' => $task['author'],
             ':added_date' => $task['added_date'],
             ':end_date' => $task['end_date'],
-            ':finished' => $task['finished'],
+            ':status' => $task['status'],
         );
             var_dump($query);
         return $query->execute($param);
     }
 
     public function update_task_status(array $task) {
-        $statement = "UPDATE tasks SET finished = :finished
+        $statement = "UPDATE tasks SET status = :status
                           WHERE id = :id AND author = :author";
         $query = $this->db->prepare($statement);
         $param = array(
             'id' => $task['id'],
             ':author' => $task['author'],
-            ':finished' => $task['finished']
+            ':status' => $task['status']
         );
         return $query->execute($param);
     }

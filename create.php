@@ -1,10 +1,10 @@
 <?php
 session_start();
-require('../functions.php');
-require('../session.php');
+require('functions.php');
+require('session.php');
 
 if (!$session->sessionIsSet()) {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -18,7 +18,7 @@ if (isset($_POST['addtask'])) {
         'author' => $name,
         'added_date' => date("Y-m-d"),
         'end_date' => $_POST['end_date'],
-        'finished' => 0
+        'status' => 'todo'
     ];
 
     // User does not exist in table
@@ -30,14 +30,14 @@ if (isset($_POST['addtask'])) {
         // add task to db
         addNewTask($task);
 
-        header("Location: ../todolist.php");
+        header("Location: todolist.php");
     }
     // User exist already
     else {
 
         // Add task directly to database
         addNewTask($task);
-        header("Location: ../todolist.php");
+        header("Location: todolist.php");
     }
 }
 

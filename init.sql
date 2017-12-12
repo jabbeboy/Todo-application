@@ -6,7 +6,7 @@ CREATE TABLE todo.tasks (
   author varchar(25) NOT NULL,
   added_date DATE DEFAULT NULL,
   end_date DATE DEFAULT NULL,
-  finished TINYINT(1) NOT NULL,
+  status VARCHAR(10) NOT NULL,
   PRIMARY KEY(id)
 );
 
