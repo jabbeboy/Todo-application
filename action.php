@@ -37,15 +37,16 @@ if (isset($_SESSION['current_user'])) {
         switch ($action) {
             case 'start':
                 $task_array['status'] = 'ongoing';
-
-                //update task status to ongoing
                 updateTask($task_array);
                 break;
+
             case 'finished':
                 $task_array['status'] = 'finished';
-
-                //update task status to finished
                 updateTask($task_array);
+                break;
+
+            case 'delete':
+                deleteTask($task_id, $_SESSION['current_user']);
                 break;
         }
         header('Location: todolist.php');

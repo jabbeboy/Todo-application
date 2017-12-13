@@ -15,7 +15,6 @@ if (isset($_SESSION['current_user'])) {
     $task = getTask($_GET['id'], $_SESSION['current_user']);
 }
 ?>
-
     <!-- INCLUDE HEADER -->
 <?php include('header.html'); ?>
 
@@ -23,7 +22,7 @@ if (isset($_SESSION['current_user'])) {
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2>Edit</h2>
+                <h3>Edit</h3>
             </div>
 
             <form id="edit_task_form" method="post" action="action.php">
@@ -76,7 +75,7 @@ if (isset($_SESSION['current_user'])) {
                     </div>
 
                     <br>
-                    <a class="btn btn-danger" href='<?php echo "actions.php?action=delete&id=" . $task->id ?>' name="delete">
+                    <a class="btn btn-danger" href='<?php echo "action.php?action=delete&id=" . $task->id ?>' name="delete">
                         <span class="glyphicon glyphicon-trash"></span> Delete
                     </a>
 

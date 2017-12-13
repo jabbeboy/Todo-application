@@ -18,19 +18,18 @@ $status = "finished";
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <h2><?php echo $_SESSION['current_user']; ?></h2>
+                <h3><?php echo $_SESSION['current_user']; ?></h3>
             </div>
 
             <div class="panel-body">
 
 				<?php // No tasks created for the chosen name ( LOOK at all tasks regardless of status)
 				if (empty(getAllTasks($_SESSION['current_user']))) {
-					echo "<div class='alert alert-info'>Woops.. Looks like there is no added tasks. </div>";
+					echo "<div class='alert alert-info'>No task added..</div>";
 				}
 				else {
 
 					if (!empty(getTasks($_SESSION['current_user'], 'ongoing'))) {
-
 
 					// ONGOING TABLE
 					echo "<table class='table table-borderless'>" .
@@ -73,7 +72,7 @@ $status = "finished";
 
 					if (!empty(getTasks($_SESSION['current_user'], 'todo'))) {
 
-						// TODO TABLE
+						// TO-DO TABLE
 						echo "</tbody></table>";
 
 						echo "<table class='table table-borderless'>" .
@@ -97,9 +96,17 @@ $status = "finished";
                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                             </p>'>$task->title</a>
                         </td>
-                      </div>";
+                      </div>
 
-							include('table_elements.php');
+							<td>
+                                <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=".$task->id."'>
+                                    <span class='glyphicon glyphicon-hand-left'></span> Start
+                                </a>
+                                
+                                <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=".$task->id."'>
+                                    <span class='glyphicon glyphicon-edit'></span> Edit
+                                </a>
+                            </td>";
 
                         echo "</tr>";
 
@@ -108,7 +115,7 @@ $status = "finished";
 
 						}
 					}
-					// END TODO TABLE
+					// END TO-DO TABLE
 
 
 					// FINISHED TABLE
