@@ -47,9 +47,22 @@ class Database {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function select_tasks($user) {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status FROM tasks WHERE author = :author"; //ORDER BY end_date DESC";
-        $param = array(':author' => $user);
+	public function select_all_tasks($user) {
+		$statement = "SELECT id, title, description, author, added_date, end_date, status 
+					  FROM tasks
+					  WHERE author = :author";
+		$param = array(':author' => $user);
+		$query = $this->db->prepare($statement);
+		$query->execute($param);
+		return $query->fetchAll();
+	}
+
+    public function select_tasks($user, $status) {
+        $statement = "SELECT id, title, description, author, added_date, end_date, status 
+					  FROM tasks 
+					  WHERE author = :author
+					  AND status = :status ORDER BY end_date DESC";
+        $param = array(':author' => $user, ':status' => $status);
         $query = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetchAll();
@@ -89,12 +102,15 @@ class Database {
     }
 
     public function update_task(array $task) {
-        $statement = "UPDATE tasks SET title = :title,
+
+        $statement = "UPDATE tasks 
+					  SET title = :title,
                           description = :description,
                           added_date = :added_date,
                           end_date = :end_date,
                           status = :status
-                          WHERE id = :id AND author = :author";
+                          WHERE id = :id 
+                          AND author = :author";
         $query = $this->db->prepare($statement);
         $param = array(
             'id' => $task['id'],
@@ -105,7 +121,6 @@ class Database {
             ':end_date' => $task['end_date'],
             ':status' => $task['status'],
         );
-            var_dump($query);
         return $query->execute($param);
     }
 

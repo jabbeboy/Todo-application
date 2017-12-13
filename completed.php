@@ -14,7 +14,7 @@ if (isset($_SESSION['current_user'])) {
     $task = [
         'id' => $_GET['id'],
         'author' => $_SESSION['current_user'],
-        'finished' => 1
+        'status' => 'finished'
     ];
 
     setTaskStatus($task);

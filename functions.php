@@ -13,8 +13,12 @@ function lookupUser($user) {
     return db_connection()->select_user($user);
 }
 
-function getTasks($user) {
-    return db_connection()->select_tasks($user);
+function getAllTasks($user) {
+	return db_connection()->select_all_tasks($user);
+}
+
+function getTasks($user, $status) {
+    return db_connection()->select_tasks($user, $status);
 }
 
 function addNewTask($task) {
@@ -34,7 +38,6 @@ function updateTask($task) {
 }
 
 function addUser($user) {
-    var_dump($user);
     return db_connection()->insert_user($user);
 }
 

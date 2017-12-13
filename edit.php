@@ -4,7 +4,7 @@ require('functions.php');
 require('session.php');
 
 if (!$session->sessionIsSet()) {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -24,7 +24,7 @@ if (isset($_SESSION['current_user'])) {
         ];
 
         updateTask($task);
-        header("Location: ../todolist.php");
+        header("Location: todolist.php");
     }
 
     // Get task info from database
@@ -86,7 +86,7 @@ if (isset($_SESSION['current_user'])) {
                     </div>
 
                     <br>
-                    <a class="btn btn-danger" href='<?php echo "delete.php?id=" . $task->id; ?>' name="delete">
+                    <a class="btn btn-danger" href='<?php echo "delete.php?id=" . $task->id ?>' name="delete">
                         <span class="glyphicon glyphicon-trash"></span> Delete
                     </a>
 
