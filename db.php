@@ -38,7 +38,9 @@ class Database {
     }
 
     public function select_user($name) {
-        $statement = "SELECT name FROM users WHERE name = :name";
+        $statement = "SELECT name 
+                      FROM users 
+                      WHERE name = :name";
         $param = array(
             ':name' => $name
         );
@@ -79,7 +81,11 @@ class Database {
     }
 
     public function insert_user($user) {
-        $statement = "INSERT INTO users (name) VALUES (:name)";
+        $statement = "INSERT 
+                      INTO users (
+                      name
+                      ) 
+                      VALUES (:name)";
         $query = $this->db->prepare($statement);
         $param = array(
             ':name' => $user);
@@ -87,7 +93,15 @@ class Database {
     }
 
     public function insert_task(array $task) {
-        $statement = "INSERT INTO tasks (title, description, author, added_date, end_date, status) 
+        $statement = "INSERT
+                      INTO tasks (
+                        title, 
+                        description,
+                        author,
+                        added_date,
+                        end_date,
+                        status
+                      ) 
                       VALUES (:title, :description, :author, :added_date, :end_date, :status)";
         $query = $this->db->prepare($statement);
         $param = array(
@@ -113,7 +127,7 @@ class Database {
                           AND author = :author";
         $query = $this->db->prepare($statement);
         $param = array(
-            'id' => $task['id'],
+            ':id' => $task['id'],
             ':title' => $task['title'],
             ':description' => $task['description'],
             ':author' => $task['author'],
@@ -125,11 +139,13 @@ class Database {
     }
 
     public function update_task_status(array $task) {
-        $statement = "UPDATE tasks SET status = :status
-                          WHERE id = :id AND author = :author";
+        $statement = "UPDATE tasks
+                      SET status = :status
+                      WHERE id = :id 
+                      AND author = :author";
         $query = $this->db->prepare($statement);
         $param = array(
-            'id' => $task['id'],
+            ':id' => $task['id'],
             ':author' => $task['author'],
             ':status' => $task['status']
         );

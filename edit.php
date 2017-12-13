@@ -8,24 +8,7 @@ if (!$session->sessionIsSet()) {
     exit();
 }
 
-$task = array();
-
 if (isset($_SESSION['current_user'])) {
-
-    if (isset($_POST['save'])) {
-        $task = [
-            'id' => $_GET['id'],
-            'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
-            'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
-            'author' => $_SESSION['current_user'],
-            'added_date' => date("Y-m-d"),
-            'end_date' => $_POST['end_date'],
-            'status' => $_POST['status']
-        ];
-
-        updateTask($task);
-        header("Location: todolist.php");
-    }
 
     // Get task info from database
     $task = array();
@@ -43,8 +26,15 @@ if (isset($_SESSION['current_user'])) {
                 <h2>Edit</h2>
             </div>
 
-            <form id="edit_task_form" method="post" action="">
+            <form id="edit_task_form" method="post" action="action.php">
                 <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="id">Task id:</label>
+                            <input type="text" class="form-control" readonly="readonly" id="id" name="id" value="<?php echo $task->id; ?>" required>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="title">Title:</label>
@@ -86,7 +76,7 @@ if (isset($_SESSION['current_user'])) {
                     </div>
 
                     <br>
-                    <a class="btn btn-danger" href='<?php echo "delete.php?id=" . $task->id ?>' name="delete">
+                    <a class="btn btn-danger" href='<?php echo "actions.php?action=delete&id=" . $task->id ?>' name="delete">
                         <span class="glyphicon glyphicon-trash"></span> Delete
                     </a>
 
