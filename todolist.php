@@ -35,9 +35,9 @@ $status = "finished";
 					echo "<table class='table table-borderless'>" .
 						"<thead>" .
 						"<tr>" .
-						"<th>Status</th>" .
-						"<th>Title</th>" .
-						"<th>Action</th>" .
+						"<th></th>" .
+						"<th></th>" .
+						"<th></th>" .
 						"</tr>" .
 						"</thead>" .
 						"<tbody>";
@@ -65,7 +65,8 @@ $status = "finished";
                         </a>
                         </td>
                         
-                       </td></tr>";
+                       </td>
+                       </tr><br>";
 					}
 					}
 					// END ONGOING TABLE
@@ -78,9 +79,9 @@ $status = "finished";
 						echo "<table class='table table-borderless'>" .
 							"<thead>" .
 							"<tr>" .
-							"<th>Status</th>" .
-							"<th>Title</th>" .
-							"<th>Action</th>" .
+							"<th></th>" .
+							"<th></th>" .
+							"<th></th>" .
 							"</tr>" .
 							"</thead>" .
 							"<tbody>";
@@ -122,9 +123,9 @@ $status = "finished";
 					echo "<table class='table table-borderless'>" .
 						"<thead>" .
 						"<tr>" .
-						"<th>Status</th>" .
-						"<th>Title</th>" .
-						"<th>Action</th>" .
+						"<th></th>" .
+						"<th></th>" .
+						"<th></th>" .
 						"</tr>" .
 						"</thead>" .
 						"<tbody>";
