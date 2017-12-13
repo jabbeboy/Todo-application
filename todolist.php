@@ -25,7 +25,7 @@ if (!$session->sessionIsSet()) {
                 if (empty(getTasks($_SESSION['current_user']))) {
                     echo "<div class='alert alert-info'>Woops.. Looks like there is no added tasks. </div>";
                 } else {
-                    echo "<table class='table table-borderless table-fit'>".
+                    echo "<table class='table table-borderless'>".
                         "<thead>".
                         "<tr>".
                         "<th>Status</th>".
@@ -65,7 +65,7 @@ if (!$session->sessionIsSet()) {
 
                         echo
                             "<td><a class='btn btn-success btn-primary-spacing' name='completed' href='completed.php?id=".$task->id."'>
-                            <span class='glyphicon glyphicon-check'></span> Completed
+                            <span class='glyphicon glyphicon-check'></span> Finished
                         </a>
                         <a class='btn btn-info btn-primary-spacing' name='edit' href='edit.php?id=".$task->id."'>
                             <span class='glyphicon glyphicon-edit'></span> Edit
