@@ -8,9 +8,9 @@ if (!$session->sessionIsSet()) {
     exit();
 }
 
-$status = "finished";
-?>
+$user = getUser($_SESSION['current_user']);
 
+?>
     <!-- INCLUDE HEADER -->
 <?php
 include('header.html');
@@ -26,13 +26,13 @@ include('header.html');
             </div>
 
             <div class="panel-body">
-
-                <?php // No tasks created for the chosen name ( LOOK at all tasks regardless of status)
-                if (empty(getAllTasks($_SESSION['current_user']))) {
+                <?php // No tasks created for the chosen name, print out alert.
+                if (empty(getAllTasks($user['id']))) {
                     echo "<div class='alert alert-info'>No task added..</div>";
                 } else {
 
-                    if (!empty(getTasks($_SESSION['current_user'], 'ongoing'))) {
+                    // Print ongoing tasks
+                    if (!empty(getTasks($user['id'], 'ongoing'))) {
 
                         // ONGOING TABLE
                         echo "<table class='table table-sm'>
@@ -43,7 +43,7 @@ include('header.html');
                                     <th>Action</th>
                                 </tr>
                             </thead>";
-                        foreach (getTasks($_SESSION['current_user'], 'ongoing') as $task) {
+                        foreach (getTasks($user['id'], 'ongoing') as $task) {
 
                             echo "<tbody>
                                 <tr>
@@ -75,7 +75,8 @@ include('header.html');
                     }
                     // END ONGOING TABLE
 
-                    if (!empty(getTasks($_SESSION['current_user'], 'todo'))) {
+                    // Print todo tasks
+                    if (!empty(getTasks($user['id'], 'todo'))) {
 
                         // TO-DO TABLE
                         echo "<table class='table table-borderless'>
@@ -87,7 +88,7 @@ include('header.html');
                                 </tr>
                             </thead>";
 
-                        foreach (getTasks($_SESSION['current_user'], 'todo') as $task) {
+                        foreach (getTasks($user['id'], 'todo') as $task) {
                             echo "<tbody>
                                 <tr>
                                     <td>
@@ -117,7 +118,8 @@ include('header.html');
                     }
                     // END TO-DO TABLE
 
-                    if (!empty(getTasks($_SESSION['current_user'], 'finished'))) {
+                    // Print finished tasks
+                    if (!empty(getTasks($user['id'], 'finished'))) {
 
                         // FINISHED TABLE
                         echo "<table class='table table-borderless'>
@@ -129,7 +131,7 @@ include('header.html');
                                 </tr>
                             </thead>";
 
-                        foreach (getTasks($_SESSION['current_user'], 'finished') as $task) {
+                        foreach (getTasks($user['id'], 'finished') as $task) {
                             echo "<tbody>
                                 <tr>
                                     <td>

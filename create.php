@@ -8,35 +8,39 @@ if (!$session->sessionIsSet()) {
     exit();
 }
 
-if (isset($_POST['addtask'])) {
+$user = getUser($_SESSION['current_user']);
 
-    $name = $_SESSION['current_user'];
+if (isset($_POST['addtask'])) {
 
     $task = array(
         'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
         'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
-        'author' => $name,
+        'author' => '',
         'added_date' => date("Y-m-d"),
         'end_date' => $_POST['end_date'],
         'status' => 'todo'
     );
 
+    var_dump(getUser($_SESSION['current_user']));
+
     // User does not exist in table
-    if (empty(lookupUser($name))) {
+    if (empty(getUser($_SESSION['current_user']))) {
 
-        // add name in db
-        addUser($name);
+        addUser($_SESSION['current_user']);
 
-        // add task to db
+        $task['author'] = $user['id'];
+        var_dump($task);
+        //var_dump($task);
         addNewTask($task);
 
         header("Location: todolist.php");
     }
     // User exist already
     else {
-
-        // Add task directly to database
+        $task['author'] = $user['id'];
+        var_dump($task);
         addNewTask($task);
+
         header("Location: todolist.php");
     }
 }

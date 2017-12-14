@@ -11,7 +11,7 @@ function checkConnection()
     return db_connection()->established_conn();
 }
 
-function lookupUser($user)
+function getUser($user)
 {
     return db_connection()->select_user($user);
 }

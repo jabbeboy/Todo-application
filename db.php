@@ -41,9 +41,10 @@ class Database
         return $this->conn_status;
     }
 
+    // Used for checking if user exist in table
     public function select_user($name)
     {
-        $statement = "SELECT name 
+        $statement = "SELECT *  
                       FROM users 
                       WHERE name = :name";
         $param     = array(
@@ -54,9 +55,10 @@ class Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Used for checking if tasks are added by user
     public function select_all_tasks($user)
     {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status 
+        $statement = "SELECT * 
                       FROM tasks
                       WHERE author = :author";
         $param     = array(
@@ -67,6 +69,7 @@ class Database
         return $query->fetchAll();
     }
 
+    // Used for getting status specific tasks / Ordering with closest ending tasks DESC
     public function select_tasks($user, $status)
     {
         $statement = "SELECT id, title, description, author, added_date, end_date, status 
@@ -82,7 +85,22 @@ class Database
         return $query->fetchAll();
     }
 
-    public function select_task($id, $user)
+    // Used for getting specific task in edit mode.
+    public function select_task($task_id, $user_id)
+    {
+        $statement = "SELECT id, title, description, author, added_date, end_date, status
+                      FROM tasks
+                      WHERE author = :author AND id = :task_id";
+        $param     = array(
+            ':task_id' => $task_id,
+            ':author' => $user_id
+        );
+        $query     = $this->db->prepare($statement);
+        $query->execute($param);
+        return $query->fetch();
+    }
+
+    /*public function select_task($id, $user)
     {
         $statement = "SELECT id, title, description, author, added_date, end_date, status 
                       FROM tasks 
@@ -94,8 +112,9 @@ class Database
         $query     = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetch();
-    }
+    }*/
 
+    // Used for inserting using user into database-
     public function insert_user($user)
     {
         $statement = "INSERT 
@@ -110,6 +129,7 @@ class Database
         return $query->execute($param);
     }
 
+    // Used for creating new task
     public function insert_task(array $task)
     {
         $statement = "INSERT
@@ -134,9 +154,9 @@ class Database
         return $query->execute($param);
     }
 
+    // Used for updating task(start, finishe or edit).
     public function update_task(array $task)
     {
-
         $statement = "UPDATE tasks 
                       SET title = :title,
                           description = :description,
@@ -158,7 +178,7 @@ class Database
         return $query->execute($param);
     }
 
-    //TODO DELETE FROM tasks WHERE id = :id AND author = :author
+    // Used for deleting task DELETE FROM tasks WHERE id = :id AND author = :author
     public function delete_task($task_id, $user)
     {
         $statement = "DELETE FROM tasks WHERE id = :id AND author = :author";

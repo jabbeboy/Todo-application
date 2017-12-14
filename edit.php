@@ -10,9 +10,11 @@ if (!$session->sessionIsSet()) {
 
 if (isset($_SESSION['current_user'])) {
 
+    $user = getUser($_SESSION['current_user']);
+
     // Get task info from database
     $task = array();
-    $task = getTask($_GET['id'], $_SESSION['current_user']);
+    $task = getTask($_GET['id'], $user['id']);
 }
 ?>
     <!-- INCLUDE HEADER -->
