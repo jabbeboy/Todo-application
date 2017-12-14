@@ -30,7 +30,7 @@ if (isset($_COOKIE['current_user'])) {
             else {
                 echo '<div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Choose name</h3>
+            <h4>Choose name</h4>
         </div>
         <div class="panel-body"><p>To use this application, enter your name (<i>Firstname Lastname</i>)</p>
 

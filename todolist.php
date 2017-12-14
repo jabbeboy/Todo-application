@@ -18,7 +18,7 @@ $status = "finished";
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <h3><?php echo $_SESSION['current_user']; ?></h3>
+            <h4><?php echo $_SESSION['current_user']; ?></h4>
         </div>
 
         <div class="panel-body">
@@ -32,129 +32,131 @@ $status = "finished";
                 if (!empty(getTasks($_SESSION['current_user'], 'ongoing'))) {
 
                     // ONGOING TABLE
-                    echo "<table class='table table-condensed'>" .
-                        "<thead>" .
-                        "<tr>" .
-                        "<th>status</th>" .
-                        "<th>title</th>" .
-                        "<th>action</th>" .
-                        "</tr>" .
-                        "</thead>" .
-                        "<tbody>";
+                    echo
+                        "<table class='table table-sm'>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>";
                     foreach (getTasks($_SESSION['current_user'], 'ongoing') as $task) {
-                        echo "<tr>";
-
-                        echo "<td><span class='label label-warning'>Ongoing</span></td>";
-
-
-
 
                         echo
-                            "<div class='container'>
-                        <td>
-                            <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
-                            title='" . $task->title . "'
-                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
-                            </p>'>$task->title</a>
-                        </td>
-                      </div>
-
-                        <td>
-                           <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
-                            <span class='glyphicon glyphicon-edit'></span>
-                        </a>
-                        <a class='btn btn-success btn-primary-spacing' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
-                            <span class='glyphicon glyphicon-check'></span>
-                        </a>
-                        </td>
-
-                       </td>
-                       </tr>";
+                            "<tbody>
+                                <tr>
+                                    <td>
+                                        <span class='label label-warning'>Ongoing</span>
+                                    </td>
+                                    <div class='container'>
+                                    <td>
+                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
+                                            title='" . $task->title . "'
+                                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
+                                            </p>'>$task->title
+                                        </a>
+                                    </td>
+                                    </div>
+                                    
+                                    <td>
+                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-edit'></span>
+                                        </a>
+                                        <a class='btn btn-success btn-primary-spacing' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-check'></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>";
                     }
+                    echo "</table>";
                 }
                 // END ONGOING TABLE
 
                 if (!empty(getTasks($_SESSION['current_user'], 'todo'))) {
 
                     // TO-DO TABLE
-                    echo "</tbody></table>";
+                    echo
+                        "<table class='table table-borderless'>
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>";
 
-                    echo "<table class='table table-borderless'>" .
-                        "<thead>" .
-                        "<tr>" .
-                        "<th>status</th>" .
-                        "<th>title</th>" .
-                        "<th>actions</th>" .
-                        "</tr>" .
-                        "</thead>" .
-                        "<tbody>";
                     foreach (getTasks($_SESSION['current_user'], 'todo') as $task) {
-                        echo "<tr>";
-                        // Status badge
-                        echo "<td><span class='label label-info'>Todo</span></td>";
                         echo
-                            "<div class='container'>
-                        <td>
-                            <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
-                            title='" . $task->title . "'
-                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
-                            </p>'>$task->title</a>
-                        </td>
-                      </div>
+                            "<tbody>
+                                <tr>
+                                    <td>
+                                        <span class='label label-info'>Todo</span>
+                                    </td>
+                                    <td>
+                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
+                                            title='" . $task->title . "'
+                                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
+                                            </p>'>$task->title
+                                        </a>
+                                    </td>
 
-							<td>
-                                <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=".$task->id."'>
-                                    <span class='glyphicon glyphicon-hand-left'></span>
-                                </a>
+							        <td>
+                                        <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=".$task->id."'>
+                                            <span class='glyphicon glyphicon-hand-left'></span>
+                                        </a>
 
-                                <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=".$task->id."'>
-                                    <span class='glyphicon glyphicon-edit'></span>
-                                </a>
-                            </td>";
-
-                        echo "</tr>";
-
-                        echo "</tbody>";
-                        echo "</table>";
-
+                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=".$task->id."'>
+                                            <span class='glyphicon glyphicon-edit'></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>";
                     }
+                    echo "</table>";
                 }
                 // END TO-DO TABLE
 
+                if (!empty(getTasks($_SESSION['current_user'], 'finished'))) {
 
-                // FINISHED TABLE
-                echo "<table class='table table-borderless'>" .
-                    "<thead>" .
-                    "<tr>" .
-                    "<th>status</th>" .
-                    "<th>title</th>" .
-                    "<th>action</th>" .
-                    "</tr>" .
-                    "</thead>" .
-                    "<tbody>";
-                foreach (getTasks($_SESSION['current_user'], 'finished') as $task) {
-                    echo "
-                        <tr>";
-                    // Status badge
-                    echo "<td><span class='label label-success'>Finished</span></td>";
+                    // FINISHED TABLE
                     echo
-                        "<div class='container'>
-                        <td>
-                            <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
-                                title='" . $task->title . "'
-                                data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
-                                </p>'>$task->title
-                            </a>
-                        </td></div>";
-                    echo "<td><a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
-                                    <span class='glyphicon glyphicon-edit'></span>
-                                  </a>
-                              </td>
-                        </tr>";
+                        "<table class='table table-borderless'>
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>";
+
+                    foreach (getTasks($_SESSION['current_user'], 'finished') as $task) {
+                        echo
+                            "<tbody>
+                                <tr>
+                                    <td>
+                                        <span class='label label-success'>Finished</span>
+                                    </td>
+                            
+                                    <td>
+                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
+                                            title='" . $task->title . "'
+                                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
+                                            </p>'>$task->title
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-edit'></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>";
+                    }
+                    echo "</table>";
+                    // END FINISHED TABLE'
                 }
-                echo "</tbody>";
-                echo "</table>";
-                // END FINISHED TABLE
             }
             ?>
 
@@ -163,8 +165,9 @@ $status = "finished";
             </a>
 
             <a class="btn btn-success" name="newtask" href="newtask.php">
-                <span class='glyphicon glyphicon-plus'></span> New
+                <span class='glyphicon glyphicon-plus'></span> New Task
             </a>
+
         </div>
     </div>
 </div>

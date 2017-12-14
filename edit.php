@@ -22,7 +22,7 @@ if (isset($_SESSION['current_user'])) {
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>Edit</h3>
+                <h4>Edit</h4>
             </div>
 
             <form id="edit_task_form" method="post" action="action.php">

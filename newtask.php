@@ -14,7 +14,7 @@ if (!$session->sessionIsSet()) {
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>New task</h3>
+                <h4>New task</h4>
             </div>
 
             <form id="newtask_form" method="post" action="create.php">
