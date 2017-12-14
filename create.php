@@ -12,14 +12,14 @@ if (isset($_POST['addtask'])) {
 
     $name = $_SESSION['current_user'];
 
-    $task = [
+    $task = array(
         'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
         'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
         'author' => $name,
         'added_date' => date("Y-m-d"),
         'end_date' => $_POST['end_date'],
         'status' => 'todo'
-    ];
+    );
 
     // User does not exist in table
     if (empty(lookupUser($name))) {
@@ -40,10 +40,3 @@ if (isset($_POST['addtask'])) {
         header("Location: todolist.php");
     }
 }
-
-
-
-
-
-
-

@@ -8,7 +8,9 @@ if (!$session->sessionIsSet()) {
 }
 ?>
     <!-- INCLUDE HEADER -->
-<?php include ('header.html'); ?>
+<?php
+include('header.html');
+?>
 
     <div class="task_page">
 
@@ -56,4 +58,6 @@ if (!$session->sessionIsSet()) {
         </div>
 
         <!-- INCLUDE FOOTER -->
-<?php include ('footer.html'); ?>
+<?php
+include('footer.html');
+?>

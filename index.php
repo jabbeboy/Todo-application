@@ -1,34 +1,35 @@
 <?php
 session_start();
 
-require ('functions.php');
-require ('session.php');
+require('functions.php');
+require('session.php');
 
 // 2. Access by saved cookie
 if (isset($_COOKIE['current_user'])) {
 
-// Redirect to todo list
+    // Redirect to todo list
     header("Location: redirect.php");
 }
 
 ?>
 
     <!-- INCLUDE HEADER -->
-<?php include ('header.html'); ?>
+<?php
+include('header.html');
+?>
 
-        <div class="index_page">
+    <div class="index_page">
 
-            <?php
-            // Connection could be established
-            if (!checkConnection()) {
-                echo '<div class="alert alert-danger alert-dissmissable fade in">
+<?php
+// Connection could be established
+if (!checkConnection()) {
+    echo '<div class="alert alert-danger alert-dissmissable fade in">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Application is not available due to connection issues.
                 Come back another time!
             </div>';
-            }
-            else {
-                echo '<div class="panel panel-default">
+} else {
+    echo '<div class="panel panel-default">
         <div class="panel-heading">
             <h4>Choose name</h4>
         </div>
@@ -50,9 +51,5 @@ if (isset($_COOKIE['current_user'])) {
                 <span class="glyphicon glyphicon-log-in"></span> Choose
             </button>
         </form></div>';
-            }
-            ?>
-            </div>
-
-    <!-- INCLUDE FOOTER -->
-<?php include ('footer.html'); ?>
+}
+?>

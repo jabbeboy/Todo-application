@@ -1,7 +1,7 @@
 <?php
 session_start();
-require ('functions.php');
-require ('session.php');
+require('functions.php');
+require('session.php');
 
 if (!$session->sessionIsSet()) {
     header("Location: index.php");
@@ -11,29 +11,31 @@ if (!$session->sessionIsSet()) {
 $status = "finished";
 ?>
 
-<!-- INCLUDE HEADER -->
-<?php include ('header.html'); ?>
-<div class="todo_page">
+    <!-- INCLUDE HEADER -->
+<?php
+include('header.html');
+?>
+    <div class="todo_page">
 
-    <div class="panel panel-default">
+        <div class="panel panel-default">
 
-        <div class="panel-heading">
-            <h4><?php echo $_SESSION['current_user']; ?></h4>
-        </div>
+            <div class="panel-heading">
+                <h4><?php
+                    echo $_SESSION['current_user'];
+                    ?></h4>
+            </div>
 
-        <div class="panel-body">
+            <div class="panel-body">
 
-            <?php // No tasks created for the chosen name ( LOOK at all tasks regardless of status)
-            if (empty(getAllTasks($_SESSION['current_user']))) {
-                echo "<div class='alert alert-info'>No task added..</div>";
-            }
-            else {
+                <?php // No tasks created for the chosen name ( LOOK at all tasks regardless of status)
+                if (empty(getAllTasks($_SESSION['current_user']))) {
+                    echo "<div class='alert alert-info'>No task added..</div>";
+                } else {
 
-                if (!empty(getTasks($_SESSION['current_user'], 'ongoing'))) {
+                    if (!empty(getTasks($_SESSION['current_user'], 'ongoing'))) {
 
-                    // ONGOING TABLE
-                    echo
-                        "<table class='table table-sm'>
+                        // ONGOING TABLE
+                        echo "<table class='table table-sm'>
                             <thead>
                                 <tr>
                                     <th>Status</th>
@@ -41,10 +43,9 @@ $status = "finished";
                                     <th>Action</th>
                                 </tr>
                             </thead>";
-                    foreach (getTasks($_SESSION['current_user'], 'ongoing') as $task) {
+                        foreach (getTasks($_SESSION['current_user'], 'ongoing') as $task) {
 
-                        echo
-                            "<tbody>
+                            echo "<tbody>
                                 <tr>
                                     <td>
                                         <span class='label label-warning'>Ongoing</span>
@@ -69,16 +70,15 @@ $status = "finished";
                                     </td>
                                 </tr>
                             </tbody>";
+                        }
+                        echo "</table>";
                     }
-                    echo "</table>";
-                }
-                // END ONGOING TABLE
+                    // END ONGOING TABLE
 
-                if (!empty(getTasks($_SESSION['current_user'], 'todo'))) {
+                    if (!empty(getTasks($_SESSION['current_user'], 'todo'))) {
 
-                    // TO-DO TABLE
-                    echo
-                        "<table class='table table-borderless'>
+                        // TO-DO TABLE
+                        echo "<table class='table table-borderless'>
                             <thead>
                                 <tr>
                                     <th>Status</th>
@@ -87,9 +87,8 @@ $status = "finished";
                                 </tr>
                             </thead>";
 
-                    foreach (getTasks($_SESSION['current_user'], 'todo') as $task) {
-                        echo
-                            "<tbody>
+                        foreach (getTasks($_SESSION['current_user'], 'todo') as $task) {
+                            echo "<tbody>
                                 <tr>
                                     <td>
                                         <span class='label label-info'>Todo</span>
@@ -102,27 +101,26 @@ $status = "finished";
                                         </a>
                                     </td>
 
-							        <td>
-                                        <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=".$task->id."'>
+                                    <td>
+                                        <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-play'></span>
                                         </a>
 
-                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=".$task->id."'>
+                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
                                     </td>
                                 </tr>
                             </tbody>";
+                        }
+                        echo "</table>";
                     }
-                    echo "</table>";
-                }
-                // END TO-DO TABLE
+                    // END TO-DO TABLE
 
-                if (!empty(getTasks($_SESSION['current_user'], 'finished'))) {
+                    if (!empty(getTasks($_SESSION['current_user'], 'finished'))) {
 
-                    // FINISHED TABLE
-                    echo
-                        "<table class='table table-borderless'>
+                        // FINISHED TABLE
+                        echo "<table class='table table-borderless'>
                             <thead>
                                 <tr>
                                     <th>Status</th>
@@ -131,9 +129,8 @@ $status = "finished";
                                 </tr>
                             </thead>";
 
-                    foreach (getTasks($_SESSION['current_user'], 'finished') as $task) {
-                        echo
-                            "<tbody>
+                        foreach (getTasks($_SESSION['current_user'], 'finished') as $task) {
+                            echo "<tbody>
                                 <tr>
                                     <td>
                                         <span class='label label-success'>Finished</span>
@@ -153,24 +150,26 @@ $status = "finished";
                                     </td>
                                 </tr>
                             </tbody>";
+                        }
+                        echo "</table>";
+                        // END FINISHED TABLE'
                     }
-                    echo "</table>";
-                    // END FINISHED TABLE'
                 }
-            }
-            ?>
+                ?>
 
-            <a type='submit' href="exit.php" name='exit' class='btn btn-danger'>
-                <span class='glyphicon glyphicon-log-out'></span> Exit
-            </a>
+                <a type='submit' href="exit.php" name='exit' class='btn btn-danger'>
+                    <span class='glyphicon glyphicon-log-out'></span> Exit
+                </a>
 
-            <a class="btn btn-success" name="newtask" href="newtask.php">
-                <span class='glyphicon glyphicon-plus'></span> New Task
-            </a>
+                <a class="btn btn-success" name="newtask" href="newtask.php">
+                    <span class='glyphicon glyphicon-plus'></span> New Task
+                </a>
 
+            </div>
         </div>
     </div>
-</div>
 
-<!-- INCLUDE FOOTER -->
-<?php include ('footer.html'); ?>
+    <!-- INCLUDE FOOTER -->
+<?php
+include('footer.html');
+?>

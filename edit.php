@@ -16,7 +16,9 @@ if (isset($_SESSION['current_user'])) {
 }
 ?>
     <!-- INCLUDE HEADER -->
-<?php include('header.html'); ?>
+<?php
+include('header.html');
+?>
 
     <div class="edit_page">
 
@@ -30,21 +32,27 @@ if (isset($_SESSION['current_user'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="id">Task id:</label>
-                            <input type="text" class="form-control" readonly="readonly" id="id" name="id" value="<?php echo $task->id; ?>" required>
+                            <input type="text" class="form-control" readonly="readonly" id="id" name="id" value="<?php
+                            echo $task->id;
+                            ?>" required>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="title">Title:</label>
-                            <input type="text" class="form-control" id="title" name="title" value="<?php echo $task->title; ?>" required>
+                            <input type="text" class="form-control" id="title" name="title" value="<?php
+                            echo $task->title;
+                            ?>" required>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="description">Description:</label>
-                            <input type="text" class="form-control" id="description" name="description" value="<?php echo $task->description; ?>" required>
+                            <input type="text" class="form-control" id="description" name="description" value="<?php
+                            echo $task->description;
+                            ?>" required>
                         </div>
                     </div>
                     <br>
@@ -54,7 +62,9 @@ if (isset($_SESSION['current_user'])) {
                             <div class="form-group">
                                 <label for="datepicker_edit">End date:</label>
                                 <div class='input-group date' id='datepicker_edit'>
-                                    <input type='text' name="end_date" class="form-control" value="<?php $task->end_date; ?>" />
+                                    <input type='text' name="end_date" class="form-control" value="<?php
+                                    $task->end_date;
+                                    ?>" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -75,7 +85,9 @@ if (isset($_SESSION['current_user'])) {
                     </div>
 
                     <br>
-                    <a class="btn btn-danger" href='<?php echo "action.php?action=delete&id=" . $task->id ?>' name="delete">
+                    <a class="btn btn-danger" href='<?php
+                    echo "action.php?action=delete&id=" . $task->id;
+                    ?>' name="delete">
                         <span class="glyphicon glyphicon-trash"></span> Delete
                     </a>
 
@@ -92,4 +104,6 @@ if (isset($_SESSION['current_user'])) {
     </div>
 
     <!-- INCLUDE FOOTER -->
-<?php include('footer.html'); ?>
+<?php
+include('footer.html');
+?>

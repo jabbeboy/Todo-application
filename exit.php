@@ -9,4 +9,3 @@ if (!$session->sessionIsSet()) {
 
 $session->unsetCurrentUser();
 header('Location: index.php');
-

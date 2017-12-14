@@ -15,12 +15,12 @@ $task = array();
 // Make sure a session of user is started
 if (isset($_SESSION['current_user'])) {
 
-    $action = $_GET['action'];
+    $action  = $_GET['action'];
     $task_id = $_GET['id'];
 
     $task = getTask($task_id, $_SESSION['current_user']);
 
-    $task_array = [
+    $task_array = array(
         'id' => $task->id,
         'title' => $task->title,
         'description' => $task->description,
@@ -28,7 +28,7 @@ if (isset($_SESSION['current_user'])) {
         'added_date' => $task->added_date,
         'end_date' => $task->end_date,
         'status' => $task->status
-    ];
+    );
 
     var_dump($task_array);
 
@@ -55,7 +55,7 @@ if (isset($_SESSION['current_user'])) {
     //Saving edited task
     else if (isset($_POST['save'])) {
 
-        $task = [
+        $task = array(
             'id' => $_POST['id'],
             'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
             'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
@@ -63,7 +63,7 @@ if (isset($_SESSION['current_user'])) {
             'added_date' => date("Y-m-d"),
             'end_date' => $_POST['end_date'],
             'status' => $_POST['status']
-        ];
+        );
 
         var_dump($task);
 
@@ -71,7 +71,3 @@ if (isset($_SESSION['current_user'])) {
         header("Location: todolist.php");
     }
 }
-
-
-
-
