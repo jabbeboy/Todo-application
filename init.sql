@@ -2,7 +2,7 @@
 CREATE TABLE todo.tasks (
   id int(10) AUTO_INCREMENT NOT NULL ,
   title varchar(25) NOT NULL,
-  description varchar(100) NOT NULL,
+  description varchar(500) NOT NULL,
   author varchar(25) NOT NULL,
   added_date DATE DEFAULT NULL,
   end_date DATE DEFAULT NULL,

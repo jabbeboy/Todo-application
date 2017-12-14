@@ -36,9 +36,9 @@ $status = "finished";
                         "<table class='table table-sm'>
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>";
                     foreach (getTasks($_SESSION['current_user'], 'ongoing') as $task) {
@@ -61,10 +61,10 @@ $status = "finished";
                                     
                                     <td>
                                         <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
-                                            <span class='glyphicon glyphicon-edit'></span>
+                                            <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
                                         <a class='btn btn-success btn-primary-spacing' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
-                                            <span class='glyphicon glyphicon-check'></span>
+                                            <span class='glyphicon glyphicon-ok'></span>
                                         </a>
                                     </td>
                                 </tr>
@@ -104,11 +104,11 @@ $status = "finished";
 
 							        <td>
                                         <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=".$task->id."'>
-                                            <span class='glyphicon glyphicon-hand-left'></span>
+                                            <span class='glyphicon glyphicon-play'></span>
                                         </a>
 
                                         <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=".$task->id."'>
-                                            <span class='glyphicon glyphicon-edit'></span>
+                                            <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
                                     </td>
                                 </tr>
@@ -148,7 +148,7 @@ $status = "finished";
                                     </td>
                                     <td>
                                         <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
-                                            <span class='glyphicon glyphicon-edit'></span>
+                                            <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
                                     </td>
                                 </tr>
