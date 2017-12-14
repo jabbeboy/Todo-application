@@ -52,5 +52,18 @@ FROM todo.tasks
 WHERE tasks.author = :author
 AND tasks.status = :status ORDER BY tasks.end_date DESC";
 
+
+/* 4. */
+UPDATE todo.tasks
+SET
+  tasks.title = :title,
+  tasks.description = :description,
+  tasks.added_date = :added_date,
+  tasks.end_date = :end_date,
+  tasks.status = :status
+  WHERE tasks.id = :id
+  AND users.author = :author";
+
+
 /*https://www.taniarascia.com/create-a-simple-database-app-connecting-to-mysql-with-php/ */
 /*https://github.com/zenware/FreeCodeCamp-wiki/blob/master/10-Steps-To-Plan-Better-So-You-Can-Write-Less-Code.md */
