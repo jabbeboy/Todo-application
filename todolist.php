@@ -141,7 +141,7 @@ include('header.html');
                             echo "<tbody>
                                 <tr>
                                     <td>
-                                        <span class='label label-success'>Finished</span>
+                                        <span class='label label-success'>Finished</span>&nbsp;
                                     </td>
                             
                                     <td>
