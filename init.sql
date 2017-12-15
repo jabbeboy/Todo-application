@@ -19,8 +19,6 @@ CREATE TABLE todo.users (
 
 /* QUERIES */
 
-
-
 /* 1. All tasks with ending date that is greater than current date */
 SELECT *
 FROM todo.tasks
@@ -28,40 +26,42 @@ WHERE added_date < CURDATE();
 
 /* 2. All tasks by a specific user*/
 SELECT tasks.id,
- tasks.title,
- tasks.description,
- tasks.added_date,
- tasks.end_date,
- tasks.status
+       tasks.title,
+       tasks.description,
+       tasks.added_date,
+       tasks.end_date,
+       tasks.status
 FROM todo.tasks
 INNER JOIN todo.users
-ON users.id = tasks.author
+ON todo.users.id = todo.tasks.author
 WHERE users.id = '12';
-
 
 /* 3. */
 
 
 
-
 /* 4. Update task with current users id and name*/
-UPDATE tasks
-SET
-  title,
-  description,
-  added_date,
-  end_date,
-  status = :status
-  WHERE tasks.id = :id
-  AND users.author = :author;
+UPDATE todo.tasks
+SET tasks.title,
+    tasks.description,
+    tasks.added_date,
+    tasks.end_date,
+    tasks.status
+WHERE todo.tasks.id = ''
+AND tasks.author = '';
 
 /* 5. All tasks with specific status ordered by the task with ending date closest*/
-SELECT id, title, description, author, added_date, end_date, status
-FROM tasks
-WHERE author = :author
-AND status = :status
-ORDER BY end_date
-DESC;
+SELECT tasks.id,
+       tasks.title,
+       tasks.description,
+       tasks.author,
+       tasks.added_date,
+       tasks.end_date,
+       tasks.status
+FROM todo.tasks
+WHERE tasks.author = ''
+AND tasks.status = ''
+ORDER BY tasks.end_date DESC;
 
 
 /*https://www.taniarascia.com/create-a-simple-database-app-connecting-to-mysql-with-php/ */

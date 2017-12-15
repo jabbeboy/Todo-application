@@ -117,10 +117,7 @@ class Database
     // Used for inserting using user into database-
     public function insert_user($user)
     {
-        $statement = "INSERT 
-                      INTO users (
-                      name
-                      ) 
+        $statement = "INSERT INTO users (name) 
                       VALUES (:name)";
         $query     = $this->db->prepare($statement);
         $param     = array(
