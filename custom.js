@@ -29,6 +29,6 @@ $(document).ready(function() {
         autoclose: true,
         format: 'yyyy-mm-dd',
         startDate: endStartDate
-    }).datepicker('setDate', endStartDate);
+    }).datepicker('update', new Date('yyyy-mm-dd'));
 
 });

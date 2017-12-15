@@ -88,11 +88,6 @@ class Database
     public function select_tasks_by_priority($author)
     {
         $statement = "SELECT id,
-                             title,
-                             description,
-                             author,
-                             added_date,
-                             end_date,
                              status
                       FROM tasks
                       WHERE author = :author 
@@ -104,8 +99,6 @@ class Database
         $query     = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetchAll();
-
-
     }
 
     // Used for getting specific task in edit mode.
