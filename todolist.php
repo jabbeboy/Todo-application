@@ -2,15 +2,12 @@
 session_start();
 require('functions.php');
 require('session.php');
-
 if (!$session->sessionIsSet()) {
     header("Location: index.php");
     exit();
 }
-
 $user = getUser($_SESSION['current_user']);
-
-?>
+?>s
     <!-- INCLUDE HEADER -->
 <?php
 include('header.html');
@@ -30,10 +27,8 @@ include('header.html');
                 if (empty(getAllTasks($user['id']))) {
                     echo "<div class='alert alert-info'>No task added..</div>";
                 } else {
-
                     // Print ongoing tasks
                     if (!empty(getTasks($user['id'], 'ongoing'))) {
-
                         // ONGOING TABLE
                         echo "<table class='table table-sm'>
                             <thead>
@@ -44,7 +39,6 @@ include('header.html');
                                 </tr>
                             </thead>";
                         foreach (getTasks($user['id'], 'ongoing') as $task) {
-
                             echo "<tbody>
                                 <tr>
                                     <td>
@@ -74,10 +68,8 @@ include('header.html');
                         echo "</table>";
                     }
                     // END ONGOING TABLE
-
                     // Print todo tasks
                     if (!empty(getTasks($user['id'], 'todo'))) {
-
                         // TO-DO TABLE
                         echo "<table class='table table-borderless'>
                             <thead>
@@ -87,7 +79,6 @@ include('header.html');
                                     <th>Actions</th>
                                 </tr>
                             </thead>";
-
                         foreach (getTasks($user['id'], 'todo') as $task) {
                             echo "<tbody>
                                 <tr>
@@ -101,12 +92,10 @@ include('header.html');
                                             </p>'>$task->title
                                         </a>
                                     </td>
-
                                     <td>
                                         <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-play'></span>
                                         </a>
-
                                         <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
@@ -117,10 +106,8 @@ include('header.html');
                         echo "</table>";
                     }
                     // END TO-DO TABLE
-
                     // Print finished tasks
                     if (!empty(getTasks($user['id'], 'finished'))) {
-
                         // FINISHED TABLE
                         echo "<table class='table table-borderless'>
                             <thead>
@@ -130,7 +117,6 @@ include('header.html');
                                     <th>Action</th>
                                 </tr>
                             </thead>";
-
                         foreach (getTasks($user['id'], 'finished') as $task) {
                             echo "<tbody>
                                 <tr>

@@ -16,41 +16,8 @@ CREATE TABLE todo.users (
   PRIMARY KEY(id)
 );
 
-
 /* QUERIES */
-
-/* 1. All tasks with ending date that is greater than current date */
-SELECT *
-FROM todo.tasks
-WHERE added_date < CURDATE();
-
-/* 2. All tasks by a specific user*/
-SELECT tasks.id,
-       tasks.title,
-       tasks.description,
-       tasks.added_date,
-       tasks.end_date,
-       tasks.status
-FROM todo.tasks
-INNER JOIN todo.users
-ON todo.users.id = todo.tasks.author
-WHERE users.id = '12';
-
-/* 3. */
-
-
-
-/* 4. Update task with current users id and name*/
-UPDATE todo.tasks
-SET tasks.title,
-    tasks.description,
-    tasks.added_date,
-    tasks.end_date,
-    tasks.status
-WHERE todo.tasks.id = ''
-AND tasks.author = '';
-
-/* 5. All tasks with specific status ordered by the task with ending date closest*/
+/* 1. Tasks with specific status ordered by end_date */
 SELECT tasks.id,
        tasks.title,
        tasks.description,
@@ -62,6 +29,68 @@ FROM todo.tasks
 WHERE tasks.author = ''
 AND tasks.status = ''
 ORDER BY tasks.end_date DESC;
+
+/* 2. */
+
+
+
+
+/* ------------------------------*/
+SELECT tasks.id,
+       tasks.title,
+       tasks.description,
+       tasks.added_date,
+       tasks.end_date,
+       tasks.status
+FROM todo.tasks
+INNER JOIN todo.users
+ON todo.users.id = todo.tasks.author
+WHERE users.id = '12';
+
+
+/* 3. Update task with current users id and name */
+UPDATE todo.tasks
+SET tasks.title,
+    tasks.description,
+    tasks.added_date,
+    tasks.end_date,
+    tasks.status
+WHERE todo.tasks.id = ''
+AND tasks.author = '';
+
+/* 4. */
+
+
+
+/* 5. Select tasks with status “ongoing” and "to-do"
+and with an ending date that has surpassed the current date*/
+ */
+SELECT tasks.id,
+       tasks.title,
+       tasks.description,
+       tasks.author,
+       tasks.added_date,
+       tasks.end_date,
+       tasks.status
+FROM todo.tasks
+WHERE tasks.author = '12'
+AND tasks.status = 'todo'
+
+/* --------------------------------*/
+SELECT tasks.id,
+       tasks.title,
+       tasks.description,
+       tasks.author,
+       tasks.added_date,
+       tasks.end_date,
+       tasks.status
+FROM todo.tasks
+WHERE tasks.author = '' AND
+tasks.end_date < CURDATE()
+AND tasks.status IN ('todo', 'ongoing')
+
+
+
 
 
 /*https://www.taniarascia.com/create-a-simple-database-app-connecting-to-mysql-with-php/ */

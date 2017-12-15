@@ -72,7 +72,7 @@ class Database
     // Used for getting status specific tasks / Ordering with closest ending tasks DESC
     public function select_tasks($user, $status)
     {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status 
+        $statement = "SELECT  title, description, author, added_date, end_date, status 
                       FROM tasks 
                       WHERE author = :author
                       AND status = :status ORDER BY end_date DESC";
