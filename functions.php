@@ -21,6 +21,11 @@ function getAllTasks($user)
     return db_connection()->select_all_tasks($user);
 }
 
+function getTaskByPriority($user)
+{
+    return db_connection()->select_tasks_by_priority($user);
+}
+
 function getTasks($user, $status)
 {
     return db_connection()->select_tasks($user, $status);

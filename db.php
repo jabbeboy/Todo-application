@@ -72,7 +72,7 @@ class Database
     // Used for getting status specific tasks / Ordering with closest ending tasks DESC
     public function select_tasks($user, $status)
     {
-        $statement = "SELECT  title, description, author, added_date, end_date, status 
+        $statement = "SELECT id, title, description, author, added_date, end_date, status 
                       FROM tasks 
                       WHERE author = :author
                       AND status = :status ORDER BY end_date DESC";
@@ -83,6 +83,29 @@ class Database
         $query     = $this->db->prepare($statement);
         $query->execute($param);
         return $query->fetchAll();
+    }
+
+    public function select_tasks_by_priority($author)
+    {
+        $statement = "SELECT id,
+                             title,
+                             description,
+                             author,
+                             added_date,
+                             end_date,
+                             status
+                      FROM tasks
+                      WHERE author = :author 
+                      AND end_date <= CURDATE()
+                      AND status IN ('todo', 'ongoing')";
+        $param     = array(
+            ':author' => $author
+        );
+        $query     = $this->db->prepare($statement);
+        $query->execute($param);
+        return $query->fetchAll();
+
+
     }
 
     // Used for getting specific task in edit mode.

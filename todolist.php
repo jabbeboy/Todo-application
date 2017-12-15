@@ -6,7 +6,10 @@ if (!$session->sessionIsSet()) {
     header("Location: index.php");
     exit();
 }
+
 $user = getUser($_SESSION['current_user']);
+$priority = getTaskByPriority($user['id']);
+
 ?>s
     <!-- INCLUDE HEADER -->
 <?php
@@ -23,28 +26,40 @@ include('header.html');
             </div>
 
             <div class="panel-body">
+
                 <?php // No tasks created for the chosen name, print out alert.
                 if (empty(getAllTasks($user['id']))) {
                     echo "<div class='alert alert-info'>No task added..</div>";
                 } else {
-                    // Print ongoing tasks
+                    // Print todo tasks
                     if (!empty(getTasks($user['id'], 'ongoing'))) {
-                        // ONGOING TABLE
-                        echo "<table class='table table-sm'>
+
+                        echo "<table class='table table-borderless'>
                             <thead>
                                 <tr>
                                     <th>Status</th>
                                     <th>Title</th>
-                                    <th>Action</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>";
                         foreach (getTasks($user['id'], 'ongoing') as $task) {
+
                             echo "<tbody>
                                 <tr>
-                                    <td>
-                                        <span class='label label-warning'>Ongoing</span>
+                                    <td>";
+
+                            // Priority label is printed on each task
+                            if (!empty($priority)) {
+                                foreach ($priority as $p) {
+                                    if ($p->status === 'ongoing') {
+                                        echo "<span class='label label-danger'>Priority</span>&nbsp;";
+                                        break;
+                                    }
+                                }
+                            }
+
+                            echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
-                                    <div class='container'>
                                     <td>
                                         <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
                                             title='" . $task->title . "'
@@ -52,8 +67,6 @@ include('header.html');
                                             </p>'>$task->title
                                         </a>
                                     </td>
-                                    </div>
-                                    
                                     <td>
                                         <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-pencil'></span>
@@ -65,10 +78,9 @@ include('header.html');
                                 </tr>
                             </tbody>";
                         }
-                        echo "</table>";
                     }
-                    // END ONGOING TABLE
-                    // Print todo tasks
+                    echo "</table>";
+
                     if (!empty(getTasks($user['id'], 'todo'))) {
                         // TO-DO TABLE
                         echo "<table class='table table-borderless'>
@@ -82,8 +94,18 @@ include('header.html');
                         foreach (getTasks($user['id'], 'todo') as $task) {
                             echo "<tbody>
                                 <tr>
-                                    <td>
-                                        <span class='label label-info'>Todo</span>
+                                    <td>";
+
+                            // Priority label is printed on each task
+                            if (!empty($priority)) {
+                                foreach ($priority as $p) {
+                                    if ($p->status === 'todo') {
+                                        echo "<span class='label label-danger'>Priority</span>&nbsp;";
+                                        break;
+                                    }
+                                }
+                            }
+                            echo "<span class='label label-info'>Todo</span>
                                     </td>
                                     <td>
                                         <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
@@ -102,13 +124,11 @@ include('header.html');
                                     </td>
                                 </tr>
                             </tbody>";
+                            }
                         }
                         echo "</table>";
-                    }
-                    // END TO-DO TABLE
-                    // Print finished tasks
+
                     if (!empty(getTasks($user['id'], 'finished'))) {
-                        // FINISHED TABLE
                         echo "<table class='table table-borderless'>
                             <thead>
                                 <tr>
@@ -140,7 +160,6 @@ include('header.html');
                             </tbody>";
                         }
                         echo "</table>";
-                        // END FINISHED TABLE'
                     }
                 }
                 ?>
