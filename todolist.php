@@ -2,15 +2,22 @@
 session_start();
 require('functions.php');
 require('session.php');
+
 if (!$session->sessionIsSet()) {
+    header("HTTP/1.1 / 301 Redirected");
     header("Location: index.php");
     exit();
 }
 
+if (!checkConnection()){
+    header('HTTP/1.1 404');
+    include ('404.php');
+    exit();
+}
 $user = getUser($_SESSION['current_user']);
 $priority = getTaskByPriority($user['id']);
 
-?>s
+?>
     <!-- INCLUDE HEADER -->
 <?php
 include('header.html');

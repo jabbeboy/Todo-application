@@ -4,7 +4,7 @@ session_start();
 require('functions.php');
 require('session.php');
 
-// 1. Access by session
+// 1. Access by choosing name
 if (isset($_POST['choose'])) {
 
     // Set current user session
@@ -16,16 +16,21 @@ if (isset($_POST['choose'])) {
     if (isset($_POST['rememberme'])) {
         setcookie("current_user", $_POST['name'], time() + (86400 * 30), "/");
     }
-
     header("Location: todolist.php");
+    exit();
+}
+
+else if ($_SESSION['current_user']) {
+    header("Location: todolist.php");
+    exit();
 }
 
 // 2. Access by saved cookie
-if (isset($_COOKIE['current_user'])) {
-
+else if (isset($_COOKIE['current_user'])) {
     // Set current user session from cookie
     $session->setSession($_COOKIE['current_user']);
     header("Location: todolist.php");
+    exit();
 }
 
 

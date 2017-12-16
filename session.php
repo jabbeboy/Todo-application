@@ -17,6 +17,11 @@ class Session
         return $this->sessionSet;
     }
 
+    public function getSession()
+    {
+        return $_SESSION['current_user'];
+    }
+
     public function setSession($name)
     {
         $_SESSION['current_user'] = $name;

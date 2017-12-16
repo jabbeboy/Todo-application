@@ -4,11 +4,14 @@ session_start();
 require('functions.php');
 require('session.php');
 
+
+var_dump($_SESSION);
 // 2. Access by saved cookie
-if (isset($_COOKIE['current_user'])) {
+if (isset($_COOKIE['current_user']) || isset($_SESSION['current_user'])) {
 
     // Redirect to todo list
     header("Location: redirect.php");
+    exit();
 }
 
 ?>
@@ -17,17 +20,12 @@ if (isset($_COOKIE['current_user'])) {
 <?php
 include('header.html');
 ?>
-
     <div class="index_page">
-
 <?php
 // Connection could be established
 if (!checkConnection()) {
-    echo '<div class="alert alert-danger alert-dissmissable fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Application is not available due to connection issues.
-                Come back another time!
-            </div>';
+    header('Location: 404.php');
+    exit();
 } else {
     echo '<div class="panel panel-default">
         <div class="panel-heading">

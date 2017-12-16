@@ -10,8 +10,6 @@ define('DB_INIT_FILE',__DIR__.'/'.'init.sql');
 
 define('DSN', 'mysql:host='.DB_HOST.';dbname='.DB_NAME);
 
-
-
 /* Error reporting , 1 = on, 0 = off */
 error_reporting(1);
 
