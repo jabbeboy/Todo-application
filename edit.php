@@ -10,7 +10,8 @@ if (!$session->sessionIsSet()) {
 
 if (isset($_SESSION['current_user'])) {
 
-    $user = getUser($_SESSION['current_user']);
+    // Get user details
+    $user = getUser($session->getUserSession());
 
     // Get task info from database
     $task = array();
@@ -64,7 +65,7 @@ include('header.html');
                             <div class="form-group">
                                 <label for="datepicker_edit">End date:</label>
                                 <div class='input-group date' id='datepicker_edit'>
-                                    <input type='text' name="end_date" class="form-control" value="<?php
+                                    <input type='text' name="end_date" required class="form-control" value="<?php
                                     $task->end_date;
                                     ?>" />
                                     <span class="input-group-addon">
@@ -79,9 +80,9 @@ include('header.html');
                         <div class="col-sm-3">
                             <label for="status">Status:</label>
                             <select class="form-control form-control-lg" name="status">
-                                <option value="todo">Todo</option>
                                 <option value="ongoing">Ongoing</option>
-
+                                <option value="todo">Todo</option>
+                                <option value="finished">Finished</option>
                             </select>
                         </div>
                     </div>

@@ -4,7 +4,6 @@ session_start();
 
 class Session
 {
-
     private $sessionSet = false;
 
     function __construct()
@@ -17,7 +16,7 @@ class Session
         return $this->sessionSet;
     }
 
-    public function getSession()
+    public function getUserSession()
     {
         return $_SESSION['current_user'];
     }

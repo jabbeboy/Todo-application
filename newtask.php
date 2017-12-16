@@ -37,7 +37,7 @@ include('header.html');
                             <div class="form-group">
                                 <label for="datepicker">End date:</label>
                                 <div class='input-group date' id='datepicker'>
-                                    <input type='text' name="end_date" class="form-control" />
+                                    <input type='text' name="end_date" required placeholder="2015-12-15" class="form-control" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>

@@ -22,13 +22,14 @@ $(document).ready(function() {
     // End date from value of datetimepicker for edit.
     var date = new Date($('#end_date').val());
 
-    var endStartDate = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+   ///var endStartDate = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
     // Datepicker edit
     $("#datepicker_edit").datepicker({
         autoclose: true,
         format: 'yyyy-mm-dd',
-        startDate: endStartDate
+        todayHighlight: true,
+        startDate: new Date()
     }).datepicker('update', new Date('yyyy-mm-dd'));
 
 });

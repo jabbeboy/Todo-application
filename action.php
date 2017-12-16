@@ -9,8 +9,8 @@ if (!$session->sessionIsSet()) {
     exit();
 }
 
-
-$user = getUser($_SESSION['current_user']);
+// Get user details
+$user = getUser($session->getUserSession());
 
 // Make sure a session of user is started
 if (isset($_SESSION['current_user'])) {
@@ -48,12 +48,13 @@ if (isset($_SESSION['current_user'])) {
                 break;
         }
         header('Location: todolist.php');
+        exit();
     }
 
-    //Saving edited task
+    // Saving edited task
     else if (isset($_POST['save'])) {
 
-        $task = getTask($task_id, $user['id']);
+        $task= getTask($task_id, $user['id']);
 
         $task = array(
             'id' => $_POST['id'],
@@ -64,10 +65,8 @@ if (isset($_SESSION['current_user'])) {
             'end_date' => $_POST['end_date'],
             'status' => $_POST['status']
         );
-
-        var_dump($task);
-
         updateTask($task);
         header("Location: todolist.php");
+        exit();
     }
 }
