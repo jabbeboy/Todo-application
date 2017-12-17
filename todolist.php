@@ -53,7 +53,7 @@ include('header.html');
 
                             echo "<tbody>
                                 <tr>
-                                    <td>";
+                                    <td style='text-align: left'>";
 
                             // Priority label is printed on each task
                             if (!empty($priority)) {
@@ -67,14 +67,14 @@ include('header.html');
 
                             echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
-                                    <td>
-                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
+                                    <td style='text-align: center'>
+                                        <a href='#' id='task_popover' data-toggle='popover' data-trigger='focus' data-placement='auto'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
                                     </td>
-                                    <td>
+                                    <td style='text-align: right'>
                                         <a class='btn btn-success btn-lg' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-ok'></span>
                                         </a>
@@ -103,27 +103,27 @@ include('header.html');
                         foreach (getTasks($user['id'], 'todo') as $task) {
                             echo "<tbody>
                                 <tr>
-                                    <td>";
+                                    <td style='text-align: left'>";
 
                             // Priority label is printed on each task
                             if (!empty($priority)) {
                                 foreach ($priority as $p) {
                                     if ($p->status === 'todo') {
-                                        echo "<span class='label label-danger'>Priority</span>&nbsp;";
+                                        echo "<span class='label label-danger'>Priority</span>&nbsp;<br><br>";
                                         break;
                                     }
                                 }
                             }
                             echo "<span class='label label-info'>Todo</span>
                                     </td>
-                                    <td>
-                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
+                                    <td style='text-align: center'>
+                                        <a href='' id='task_popover' data-toggle='popover' data-placement='auto'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
                                     </td>
-                                    <td>
+                                    <td style='text-align: right'>
                                         <a class='btn btn-info btn-lg' name='edit' href='action.php?action=start&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-play'></span>
                                         </a>
@@ -149,18 +149,18 @@ include('header.html');
                         foreach (getTasks($user['id'], 'finished') as $task) {
                             echo "<tbody>
                                 <tr>
-                                    <td>
+                                    <td style='text-align: left'>
                                         <span class='label label-success'>Finished</span>&nbsp;
                                     </td>
                             
-                                    <td>
-                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='focus' data-placement='auto'
+                                    <td style='text-align: center'>
+                                        <a href='' id='task_popover' data-toggle='popover' data-placement='auto'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
                                     </td>
-                                    <td>
+                                    <td style='text-align: right'>
                                     
                                         <a class='btn btn-lg btn-danger' name='edit' href='action.php?action=delete&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-trash'></span>
