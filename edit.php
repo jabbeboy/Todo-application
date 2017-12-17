@@ -27,7 +27,7 @@ include('header.html');
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Edit</h4>
+                <h3>Edit</h3>
             </div>
 
             <form id="edit_task_form" method="post" action="action.php">
@@ -35,7 +35,7 @@ include('header.html');
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="id">Task id:</label>
-                            <input type="text" class="form-control" readonly="readonly" id="id" name="id" value="<?php
+                            <input type="text" class="form-control input-lg" readonly="readonly" id="id" name="id" value="<?php
                             echo $task->id;
                             ?>" required>
                         </div>
@@ -44,7 +44,7 @@ include('header.html');
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="title">Title:</label>
-                            <input type="text" class="form-control" id="title" name="title" value="<?php
+                            <input type="text" class="form-control input-lg" id="title" name="title" value="<?php
                             echo $task->title;
                             ?>" required>
                         </div>
@@ -53,7 +53,7 @@ include('header.html');
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="description">Description:</label>
-                            <input type="text" class="form-control" id="description" name="description" value="<?php
+                            <input type="text" class="form-control input-lg" id="description" name="description" value="<?php
                             echo $task->description;
                             ?>" required>
                         </div>
@@ -65,7 +65,7 @@ include('header.html');
                             <div class="form-group">
                                 <label for="datepicker_edit">End date:</label>
                                 <div class='input-group date' id='datepicker_edit'>
-                                    <input type='text' name="end_date" required class="form-control" value="<?php
+                                    <input type='text' name="end_date" required class="form-control input-lg" value="<?php
                                     $task->end_date;
                                     ?>" />
                                     <span class="input-group-addon">
@@ -79,7 +79,7 @@ include('header.html');
                     <div class="row">
                         <div class="col-sm-3">
                             <label for="status">Status:</label>
-                            <select class="form-control form-control-lg" name="status">
+                            <select class="form-control form-control input-lg" name="status">
                                 <option value="ongoing">Ongoing</option>
                                 <option value="todo">Todo</option>
                                 <option value="finished">Finished</option>
@@ -88,17 +88,17 @@ include('header.html');
                     </div>
 
                     <br>
-                    <a class="btn btn-danger" href='<?php
+                    <a class="btn btn-lg btn-danger" href='<?php
                     echo "action.php?action=delete&id=" . $task->id;
                     ?>' name="delete">
                         <span class="glyphicon glyphicon-trash"></span> Delete
                     </a>
 
-                    <a class="btn btn-warning" href="todolist.php" name="cancel" >
+                    <a class="btn btn-lg btn-warning" href="todolist.php" name="cancel" >
                         <span class="glyphicon glyphicon-remove"></span> Cancel
                     </a>
 
-                    <button type="submit" name="save" class="btn btn-success">
+                    <button class="btn btn-lg btn-success" type="submit" name="save" >
                         <span class="glyphicon glyphicon-plus"></span> Save
                     </button>
                 </div>

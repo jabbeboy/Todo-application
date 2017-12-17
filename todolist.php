@@ -9,7 +9,7 @@ if (!$session->sessionIsSet()) {
 }
 
 if (!checkConnection()){
-    include ('404.php');
+    include('alert-danger-popup.php');
     exit();
 }
 // Get user details
@@ -22,14 +22,14 @@ $priority = getTaskByPriority($user['id']);
 <?php
 include('header.html');
 ?>
-    <div class="todo_page">
+    <div class="todo_page" style="font-family: Arial, serif; font-size: 16px">
 
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <h4><?php
+                <h3><?php
                     echo $_SESSION['current_user'];
-                    ?></h4>
+                    ?></h3>
             </div>
 
             <div class="panel-body">
@@ -41,7 +41,7 @@ include('header.html');
                     // Print todo tasks
                     if (!empty(getTasks($user['id'], 'ongoing'))) {
 
-                        echo "<table class='table table-borderless'>
+                        echo "<table class='table table-borderless' style='font-size: 16px' > 
                             <thead>
                                 <tr>
                                     <th>Status</th>
@@ -75,12 +75,14 @@ include('header.html');
                                         </a>
                                     </td>
                                     <td>
-                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
-                                            <span class='glyphicon glyphicon-pencil'></span>
-                                        </a>
-                                        <a class='btn btn-success btn-primary-spacing' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
+                                        <a class='btn btn-success btn-lg' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-ok'></span>
                                         </a>
+                                    
+                                        <a class='btn btn-lg btn-default' name='edit' href='edit.php?id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-pencil'></span>
+                                        </a>
+                                       
                                     </td>
                                 </tr>
                             </tbody>";
@@ -90,7 +92,7 @@ include('header.html');
 
                     if (!empty(getTasks($user['id'], 'todo'))) {
                         // TO-DO TABLE
-                        echo "<table class='table table-borderless'>
+                        echo "<table class='table table-borderless' style='font-size: 16px;' >
                             <thead>
                                 <tr>
                                     <th>Status</th>
@@ -122,10 +124,10 @@ include('header.html');
                                         </a>
                                     </td>
                                     <td>
-                                        <a class='btn btn-info btn-primary-spacing' name='edit' href='action.php?action=start&id=" . $task->id . "'>
+                                        <a class='btn btn-info btn-lg' name='edit' href='action.php?action=start&id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-play'></span>
                                         </a>
-                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
+                                        <a class='btn btn-default btn-lg' name='edit' href='edit.php?id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
                                     </td>
@@ -136,7 +138,7 @@ include('header.html');
                         echo "</table>";
 
                     if (!empty(getTasks($user['id'], 'finished'))) {
-                        echo "<table class='table table-borderless'>
+                        echo "<table class='table table-borderless' style='font-size: 16px' >
                             <thead>
                                 <tr>
                                     <th>Status</th>
@@ -159,9 +161,14 @@ include('header.html');
                                         </a>
                                     </td>
                                     <td>
-                                        <a class='btn btn-default btn-primary-spacing' name='edit' href='edit.php?id=" . $task->id . "'>
+                                    
+                                        <a class='btn btn-lg btn-danger' name='edit' href='action.php?action=delete&id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-trash'></span>
+                                        </a>
+                                        <a class='btn btn-lg btn-default' name='edit' href='edit.php?id=" . $task->id . "'>
                                             <span class='glyphicon glyphicon-pencil'></span>
                                         </a>
+                                        
                                     </td>
                                 </tr>
                             </tbody>";
@@ -171,11 +178,11 @@ include('header.html');
                 }
                 ?>
 
-                <a type='submit' href="exit.php" name='exit' class='btn btn-danger'>
+                <a type='submit' href="exit.php" name='exit' class='btn btn-danger btn-lg'>
                     <span class='glyphicon glyphicon-log-out'></span> Exit
                 </a>
 
-                <a class="btn btn-success" name="newtask" href="newtask.php">
+                <a class="btn btn-success btn-lg" name="newtask" href="newtask.php">
                     <span class='glyphicon glyphicon-plus'></span> New Task
                 </a>
 

@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
     // Popover
     $("[data-toggle=popover]").each(function(i, obj) {
         $(this).popover({

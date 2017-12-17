@@ -1,10 +1,27 @@
+.container {
+    font-family: Consolas, Arial, serif;
+}
+
 
 .popover {
     max-width: 100%;
 }
 
+.container {
+    background: black;
+}
 span label {
     margin-top: 5px;
+}
+
+.table > tbody > tr:first-child {
+    display: none;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+
 
 }
 
