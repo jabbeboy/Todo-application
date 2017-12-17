@@ -1,14 +1,8 @@
 $(document).ready(function() {
 
     // Popover
-    $("[data-toggle=popover]").each(function(i, obj) {
-        $(this).popover({
-            html: true,
-            content: function() {
-                var id = $(this).attr('id')
-                return $('#popover-content-' + id).html();
-            }
-        });
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
     });
 
     // Datepicker
@@ -22,8 +16,6 @@ $(document).ready(function() {
     // End date from value of datetimepicker for edit.
     var date = new Date($('#end_date').val());
 
-   ///var endStartDate = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
-
     // Datepicker edit
     $("#datepicker_edit").datepicker({
         autoclose: true,
@@ -31,5 +23,4 @@ $(document).ready(function() {
         todayHighlight: true,
         startDate: new Date()
     }).datepicker('update', new Date('yyyy-mm-dd'));
-
 });

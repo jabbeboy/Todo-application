@@ -79,7 +79,7 @@ include('header.html');
                     <div class="row">
                         <div class="col-sm-3">
                             <label for="status">Status:</label>
-                            <select class="form-control form-control input-lg" name="status">
+                            <select class="form-control form-control input-lg" d name="status">
                                 <option value="ongoing">Ongoing</option>
                                 <option value="todo">Todo</option>
                                 <option value="finished">Finished</option>

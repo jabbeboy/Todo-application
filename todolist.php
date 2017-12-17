@@ -28,7 +28,7 @@ include('header.html');
 
             <div class="panel-heading">
                 <h3><?php
-                    echo $_SESSION['current_user'];
+                    echo $user['name'];
                     ?></h3>
             </div>
 
@@ -68,8 +68,7 @@ include('header.html');
                             echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-toggle='popover' data-trigger='focus' data-placement='auto'
-                                            title='" . $task->title . "'
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
@@ -109,7 +108,7 @@ include('header.html');
                             if (!empty($priority)) {
                                 foreach ($priority as $p) {
                                     if ($p->status === 'todo') {
-                                        echo "<span class='label label-danger'>Priority</span>&nbsp;<br><br>";
+                                        echo "<span class='label label-danger'>Priority</span>&nbsp;";
                                         break;
                                     }
                                 }
@@ -117,14 +116,14 @@ include('header.html');
                             echo "<span class='label label-info'>Todo</span>
                                     </td>
                                     <td style='text-align: center'>
-                                        <a href='' id='task_popover' data-toggle='popover' data-placement='auto'
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
                                     </td>
                                     <td style='text-align: right'>
-                                        <a class='btn btn-info btn-lg' name='edit' href='action.php?action=start&id=" . $task->id . "'>
+                                        <a class='btn btn-info btn-lg' name='edit' href='action.php?action=start&id=" . $task->id . "' style='margin-bottom: 5px; margin-top: 5px'>
                                             <span class='glyphicon glyphicon-play'></span>
                                         </a>
                                         <a class='btn btn-default btn-lg' name='edit' href='edit.php?id=" . $task->id . "'>
@@ -154,7 +153,7 @@ include('header.html');
                                     </td>
                             
                                     <td style='text-align: center'>
-                                        <a href='' id='task_popover' data-toggle='popover' data-placement='auto'
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
