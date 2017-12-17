@@ -65,7 +65,8 @@ include('header.html');
                         echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' title='" . $task->title . "'
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' 
+                                            title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
@@ -103,7 +104,7 @@ include('header.html');
 
                             // Will only print "priority" label if $task->id match the returned id from getTaskByPriority()
                             if (getTaskByPriority($user['id'], $task->id, $task->status)[0]->id === $task->id) {
-                                echo "<span class='label label-danger'>Priority</span>&nbsp;";
+                                echo "<span class='label label-danger'>Priority</span>&nbsp";
                             }
 
                             echo "<span class='label label-info'>Todo</span>
@@ -111,7 +112,7 @@ include('header.html');
                                     <td style='text-align: center'>
                                         <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto'
                                             title='" . $task->title . "'
-                                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
+                                            data-content='<p>$task->description<p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
                                         </a>
                                     </td>
