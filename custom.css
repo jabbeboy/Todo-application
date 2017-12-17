@@ -1,26 +1,19 @@
-.container {
-    font-family: Consolas, Arial, serif;
-}
-
 
 .popover {
     max-width: 100%;
 }
 
-.container {
-    background: black;
-}
-span label {
-    margin-top: 5px;
+
+.table td {
+    text-align: center;
 }
 
-.table > tbody > tr:first-child {
+.table > thead > tr:first-child {
     display: none;
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {
-
 
 
 }

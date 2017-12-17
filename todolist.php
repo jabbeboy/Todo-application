@@ -154,7 +154,7 @@ include('header.html');
                                     </td>
                             
                                     <td>
-                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='hover' data-placement='auto'
+                                        <a href='' id='task_popover' data-toggle='popover' data-trigger='focus' data-placement='auto'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title

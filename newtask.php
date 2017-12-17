@@ -33,7 +33,7 @@ include('header.html');
                     </div>
 
                     <div class="row">
-                        <div class='col-sm-3'>
+                        <div class='col-sm-4'>
                             <div class="form-group">
                                 <label for="datepicker">End date:</label>
                                 <div class='input-group date' id='datepicker'>

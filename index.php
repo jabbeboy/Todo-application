@@ -39,7 +39,7 @@ else {
             <div class="row">
                 <div class="col-sm-4">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control input-lg" id="name" name="name" placeholder="Firstname Lastname" required>
+                    <input type="text" class="form-control input-lg" id="name" name="name" placeholder="John Doe" required>
                 </div>
             </div>
             <div class="checkbox">
