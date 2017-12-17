@@ -22,11 +22,10 @@ if (isset($_SESSION['current_user'])) {
 <?php
 include('header.html');
 ?>
-
     <div class="edit_page">
 
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="container">
                 <h3>Edit</h3>
             </div>
 
@@ -61,13 +60,12 @@ include('header.html');
                     <br>
 
                     <div class="row">
-                        <div class='col-sm-3'>
+                        <div class='col-sm-4'>
                             <div class="form-group">
                                 <label for="datepicker_edit">End date:</label>
                                 <div class='input-group date' id='datepicker_edit'>
-                                    <input type='text' name="end_date" required class="form-control input-lg" value="<?php
-                                    $task->end_date;
-                                    ?>" />
+                                    <input type='text' name="end_date" required class="form-control input-lg" placeholder="YYYY-MM-DD">
+
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -77,9 +75,9 @@ include('header.html');
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label for="status">Status:</label>
-                            <select class="form-control form-control input-lg" d name="status">
+                            <select class="form-control form-control input-lg"  name="status">
                                 <option value="ongoing">Ongoing</option>
                                 <option value="todo">Todo</option>
                                 <option value="finished">Finished</option>

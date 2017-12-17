@@ -46,6 +46,11 @@ if (isset($_SESSION['current_user'])) {
             case 'delete':
                 deleteTask($task_id, $user['id']);
                 break;
+
+            case 'exit':
+                $session->unsetCurrentUser();
+                header('Location: index.php');
+                break;
         }
         header('Location: todolist.php');
         exit();

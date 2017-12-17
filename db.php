@@ -85,16 +85,33 @@ class Database
         return $query->fetchAll();
     }
 
-    public function select_tasks_by_priority($author)
+/*public function select_task_by_priority($author)
     {
-        $statement = "SELECT id,
-                             status
+        $statement = "SELECT id, end_date, status
                       FROM tasks
                       WHERE author = :author 
                       AND end_date <= CURDATE()
                       AND status IN ('todo', 'ongoing')";
         $param     = array(
             ':author' => $author
+        );
+        $query     = $this->db->prepare($statement);
+        $query->execute($param);
+        return $query->fetchAll();
+    }*/
+
+    public function select_task_by_priority($author, $task_id, $status)
+    {
+        $statement = "SELECT id
+                      FROM tasks
+                      WHERE author = :author 
+                      AND id = :task_id
+                      AND end_date <= CURDATE()
+                      AND status IN (:status)";
+        $param     = array(
+            ':author' => $author,
+            ':task_id' => $task_id,
+            ':status' => $status
         );
         $query     = $this->db->prepare($statement);
         $query->execute($param);

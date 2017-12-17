@@ -1,26 +1,16 @@
+
+/* Popover specific */
 .popover {
     max-width: 100%;
 }
-/* Popover Header */
+
 .popover-title {
     font-size: 20px;
 }
 
-/* Popover Body */
 .popover-content {
     font-size: 16px;
     text-align: left;
 }
-
-.table > thead > tr:first-child {
-    display: none;
-}
-
-
-
-
-
-
-
 
 

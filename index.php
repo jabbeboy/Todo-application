@@ -28,7 +28,7 @@ else {
     ?>
 <div class="index_page" style="font-family: Arial, serif; font-size: 16px">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="container">
             <h3>Choose name</h3>
         </div>
         <div class="panel-body">

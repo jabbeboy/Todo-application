@@ -15,8 +15,6 @@ if (!checkConnection()){
 // Get user details
 $user = getUser($session->getUserSession());
 
-// Get priority of tasks
-$priority = getTaskByPriority($user['id']);
 ?>
     <!-- INCLUDE HEADER -->
 <?php
@@ -26,11 +24,15 @@ include('header.html');
 
         <div class="panel panel-default">
 
-            <div class="panel-heading">
-                <h3><?php
-                    echo $user['name'];
-                    ?></h3>
-            </div>
+                <div class="container">
+                    <h3>Tasks</h3>
+                    <?php
+
+                        echo "You are using: ".$user['name'];
+
+                        ?>
+
+                </div>
 
             <div class="panel-body">
 
@@ -44,9 +46,9 @@ include('header.html');
                         echo "<table class='table table-borderless' style='font-size: 16px' > 
                             <thead>
                                 <tr>
-                                    <th>Status</th>
-                                    <th>Title</th>
-                                    <th>Actions</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>";
                         foreach (getTasks($user['id'], 'ongoing') as $task) {
@@ -55,17 +57,12 @@ include('header.html');
                                 <tr>
                                     <td style='text-align: left'>";
 
-                            // Priority label is printed on each task
-                            if (!empty($priority)) {
-                                foreach ($priority as $p) {
-                                    if ($p->status === 'ongoing') {
-                                        echo "<span class='label label-danger'>Priority</span>&nbsp;";
-                                        break;
-                                    }
-                                }
+                            // Will only print "priority" label if $task->id match the returned id from getTaskByPriority()
+                            if (getTaskByPriority($user['id'], $task->id, $task->status)[0]->id === $task->id) {
+                                echo "<span class='label label-danger'>Priority</span>&nbsp;";
                             }
 
-                            echo "<span class='label label-warning'>Ongoing</span>
+                        echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
                                     <td style='text-align: center'>
                                         <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' title='" . $task->title . "'
@@ -94,9 +91,9 @@ include('header.html');
                         echo "<table class='table table-borderless' style='font-size: 16px;' >
                             <thead>
                                 <tr>
-                                    <th>Status</th>
-                                    <th>Title</th>
-                                    <th>Actions</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>";
                         foreach (getTasks($user['id'], 'todo') as $task) {
@@ -104,15 +101,11 @@ include('header.html');
                                 <tr>
                                     <td style='text-align: left'>";
 
-                            // Priority label is printed on each task
-                            if (!empty($priority)) {
-                                foreach ($priority as $p) {
-                                    if ($p->status === 'todo') {
-                                        echo "<span class='label label-danger'>Priority</span>&nbsp;";
-                                        break;
-                                    }
-                                }
+                            // Will only print "priority" label if $task->id match the returned id from getTaskByPriority()
+                            if (getTaskByPriority($user['id'], $task->id, $task->status)[0]->id === $task->id) {
+                                echo "<span class='label label-danger'>Priority</span>&nbsp;";
                             }
+
                             echo "<span class='label label-info'>Todo</span>
                                     </td>
                                     <td style='text-align: center'>
@@ -140,9 +133,9 @@ include('header.html');
                         echo "<table class='table table-borderless' style='font-size: 16px' >
                             <thead>
                                 <tr>
-                                    <th>Status</th>
-                                    <th>Title</th>
-                                    <th>Action</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>";
                         foreach (getTasks($user['id'], 'finished') as $task) {
@@ -177,12 +170,12 @@ include('header.html');
                 }
                 ?>
 
-                <a type='submit' href="exit.php" name='exit' class='btn btn-danger btn-lg'>
+                <a type='submit' href="action.php?action=exit" name='exit' class='btn btn-danger btn-lg'>
                     <span class='glyphicon glyphicon-log-out'></span> Exit
                 </a>
 
                 <a class="btn btn-success btn-lg" name="newtask" href="newtask.php">
-                    <span class='glyphicon glyphicon-plus'></span> New Task
+                    <span class='glyphicon glyphicon-plus'></span> New
                 </a>
 
             </div>

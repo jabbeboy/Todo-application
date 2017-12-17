@@ -15,7 +15,7 @@ include('header.html');
     <div class="task_page" style="font-family: Arial, serif; font-size: 16px">
 
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="container">
                 <h3>New task</h3>
             </div>
 

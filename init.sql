@@ -35,6 +35,7 @@ ORDER BY tasks.end_date DESC;
 
 
 
+
 /* ------------------------------*/
 SELECT tasks.id,
        tasks.title,
@@ -64,14 +65,13 @@ FROM todo.tasks
 WHERE tasks.id = 'id'
 AND tasks.author = 'author';
 
-
-/* 5. Delete a task */
-SELECT tasks.id, tasks.status
+/* 5. Select task with specific status and whose end date has surpassed the current date*/
+SELECT id
 FROM todo.tasks
-WHERE tasks.author = 'author'
-AND tasks.end_date <= CURDATE()
-AND tasks.status
-IN ('todo', 'ongoing');
+WHERE author = '10'
+AND id = '10'
+AND end_date <= CURDATE()
+AND status IN ('todo');
 
 /* --------------------------------*/
 SELECT tasks.id,
