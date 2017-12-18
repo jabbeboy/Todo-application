@@ -17,29 +17,22 @@ $user = getUser($session->getUserSession());
 
 ?>
     <!-- INCLUDE HEADER -->
-<?php
-include('header.html');
-?>
+<?php include('header.html'); ?>
     <div class="todo_page" style="font-family: Arial, serif; font-size: 16px">
 
         <div class="panel panel-default">
-
                 <div class="container">
-                    <h3>Tasks</h3>
-                    <?php
-
-                        echo "You are using: ".$user['name'];
-
-                        ?>
-
+                    <h3>
+                    <?php echo "<b>".$user['name']."</b>"; ?>
+                    </h3>
                 </div>
-
+            <hr>
             <div class="panel-body">
-
                 <?php // No tasks created for the chosen name, print out alert.
                 if (empty(getAllTasks($user['id']))) {
                     echo "<div class='alert alert-info'>No task added..</div>";
                 } else {
+
                     // Print todo tasks
                     if (!empty(getTasks($user['id'], 'ongoing'))) {
 
@@ -64,8 +57,8 @@ include('header.html');
 
                         echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
-                                    <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' 
+                                    <td>
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
@@ -110,7 +103,7 @@ include('header.html');
                             echo "<span class='label label-info'>Todo</span>
                                     </td>
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto'
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description<p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
@@ -147,7 +140,7 @@ include('header.html');
                                     </td>
                             
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto'
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
@@ -184,6 +177,4 @@ include('header.html');
     </div>
 
     <!-- INCLUDE FOOTER -->
-<?php
-include('footer.html');
-?>
+<?php include('footer.html'); ?>
