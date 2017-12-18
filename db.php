@@ -85,21 +85,6 @@ class Database
         return $query->fetchAll();
     }
 
-/*public function select_task_by_priority($author)
-    {
-        $statement = "SELECT id, end_date, status
-                      FROM tasks
-                      WHERE author = :author 
-                      AND end_date <= CURDATE()
-                      AND status IN ('todo', 'ongoing')";
-        $param     = array(
-            ':author' => $author
-        );
-        $query     = $this->db->prepare($statement);
-        $query->execute($param);
-        return $query->fetchAll();
-    }*/
-
     public function select_task_by_priority($author, $task_id, $status)
     {
         $statement = "SELECT id
