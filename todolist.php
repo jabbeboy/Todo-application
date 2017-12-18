@@ -33,56 +33,9 @@ $user = getUser($session->getUserSession());
                     echo "<div class='alert alert-info'>No task added..</div>";
                 } else {
 
-                    // Print todo tasks
-                    if (!empty(getTasks($user['id'], 'ongoing'))) {
-
-                        echo "<table class='table table-borderless' style='font-size: 16px' > 
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>";
-                        foreach (getTasks($user['id'], 'ongoing') as $task) {
-
-                            echo "<tbody>
-                                <tr>
-                                    <td style='text-align: left'>";
-
-                            // Will only print "priority" label if $task->id match the returned id from getTaskByPriority()
-                            if (getTaskByPriority($user['id'], $task->id, $task->status)[0]->id === $task->id) {
-                                echo "<span class='label label-danger'>Priority</span>&nbsp;";
-                            }
-
-                        echo "<span class='label label-warning'>Ongoing</span>
-                                    </td>
-                                    <td>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
-                                            title='" . $task->title . "'
-                                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
-                                            </p>'>$task->title
-                                        </a>
-                                    </td>
-                                    <td style='text-align: right'>
-                                        <a class='btn btn-success btn-lg' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
-                                            <span class='glyphicon glyphicon-ok'></span>
-                                        </a>
-                                    
-                                        <a class='btn btn-lg btn-default' name='edit' href='edit.php?id=" . $task->id . "'>
-                                            <span class='glyphicon glyphicon-pencil'></span>
-                                        </a>
-                                       
-                                    </td>
-                                </tr>
-                            </tbody>";
-                        }
-                    }
-                    echo "</table>";
-
                     if (!empty(getTasks($user['id'], 'todo'))) {
                         // TO-DO TABLE
-                        echo "<table class='table table-borderless' style='font-size: 16px;' >
+                        echo "<table class='table table-borderless' style='font-size: 18px;' >
                             <thead>
                                 <tr>
                                     <th></th>
@@ -119,12 +72,59 @@ $user = getUser($session->getUserSession());
                                     </td>
                                 </tr>
                             </tbody>";
-                            }
                         }
-                        echo "</table>";
+                    }
+                    echo "</table>";
+
+                    // Print todo tasks
+                    if (!empty(getTasks($user['id'], 'ongoing'))) {
+
+                        echo "<table class='table table-borderless' style='font-size: 18px' > 
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>";
+                        foreach (getTasks($user['id'], 'ongoing') as $task) {
+
+                            echo "<tbody>
+                                <tr>
+                                    <td style='text-align: left'>";
+
+                            // Will only print "priority" label if $task->id match the returned id from getTaskByPriority()
+                            if (getTaskByPriority($user['id'], $task->id, $task->status)[0]->id === $task->id) {
+                                echo "<span class='label label-danger'>Priority</span>&nbsp;";
+                            }
+
+                        echo "<span class='label label-warning'>Ongoing</span>
+                                    </td>
+                                    <td style='text-align: center'>
+                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
+                                            title='" . $task->title . "'
+                                            data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
+                                            </p>'>$task->title
+                                        </a>
+                                    </td>
+                                    <td style='text-align: right'>
+                                        <a class='btn btn-success btn-lg' name='finished' href='action.php?action=finished&id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-ok'></span>
+                                        </a>
+                                    
+                                        <a class='btn btn-lg btn-default' name='edit' href='edit.php?id=" . $task->id . "'>
+                                            <span class='glyphicon glyphicon-pencil'></span>
+                                        </a>
+                                       
+                                    </td>
+                                </tr>
+                            </tbody>";
+                        }
+                    }
+                    echo "</table>";
 
                     if (!empty(getTasks($user['id'], 'finished'))) {
-                        echo "<table class='table table-borderless' style='font-size: 16px' >
+                        echo "<table class='table table-borderless' style='font-size: 18px' >
                             <thead>
                                 <tr>
                                     <th></th>

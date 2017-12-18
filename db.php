@@ -75,7 +75,7 @@ class Database
         $statement = "SELECT id, title, description, author, added_date, end_date, status 
                       FROM tasks 
                       WHERE author = :author
-                      AND status = :status ORDER BY end_date DESC";
+                      AND status = :status ORDER BY end_date ASC";
         $param     = array(
             ':author' => $user,
             ':status' => $status
