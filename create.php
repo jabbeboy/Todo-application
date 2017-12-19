@@ -15,20 +15,30 @@ if (isset($_POST['addtask'])) {
     $task = array(
         'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
         'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
-        'author' => $user['id'],
+        'author' => '',
         'added_date' => date("Y-m-d"),
         'end_date' => $_POST['end_date'],
         'status' => 'todo'
     );
     // User does not exist in table
     if (empty(getUser($_SESSION['current_user']))) {
+        // Add user
         addUser($session->getUserSession());
+
+        // Set author
+        $task['author'] = $user['id'];
+
+        // Add task
         addNewTask($task);
         header("Location: todolist.php");
         exit();
     }
     // User exist already
     else {
+        // Set author
+        $task['author'] = $user['id'];
+
+        // Add task
         addNewTask($task);
         header("Location: todolist.php");
         exit();
