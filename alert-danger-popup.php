@@ -4,3 +4,4 @@
         Application is not available due to connection issues.
     </div>
 
+<?php include ("footer.html"); ?>

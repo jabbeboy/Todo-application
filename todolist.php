@@ -23,7 +23,7 @@ $user = getUser($session->getUserSession());
         <div class="panel panel-default">
                 <div class="container">
                     <h3>
-                    <?php echo "<b>".$user['name']."</b>"; ?>
+                    <?php echo "<b>".$session->getUserSession()."</b>"; ?>
                     </h3>
                 </div>
             <hr>
