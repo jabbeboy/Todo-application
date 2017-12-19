@@ -12,6 +12,15 @@ if (!checkConnection()){
     include('alert-danger-popup.php');
     exit();
 }
+
+// No user exist in db, creating a new.
+if (empty(getUser($session->getUserSession()))) {
+    addUser($session->getUserSession());
+}
+?>
+
+<?php
+
 // Get user details
 $user = getUser($session->getUserSession());
 
@@ -23,7 +32,7 @@ $user = getUser($session->getUserSession());
         <div class="panel panel-default">
                 <div class="container">
                     <h3>
-                    <?php echo "<b>" . $user['name'] . "</b>"; ?>
+                    <?php echo "<b>" . $session->getUserSession() . "</b>"; ?>
                     </h3>
                 </div>
             <hr>
