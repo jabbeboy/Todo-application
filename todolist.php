@@ -23,7 +23,7 @@ $user = getUser($session->getUserSession());
         <div class="panel panel-default">
                 <div class="container">
                     <h3>
-                    <?php echo "<b>".$session->getUserSession()."</b>"; ?>
+                    <?php echo "<b>" . $user['name'] . "</b>"; ?>
                     </h3>
                 </div>
             <hr>
@@ -168,7 +168,7 @@ $user = getUser($session->getUserSession());
                     <span class='glyphicon glyphicon-log-out'></span> Exit
                 </a>
 
-                <a class="btn btn-success btn-lg" name="newtask" href="newtask.php">
+                <a class="btn btn-success btn-lg" name="newtask" href="new.php">
                     <span class='glyphicon glyphicon-plus'></span> New
                 </a>
 

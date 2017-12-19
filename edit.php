@@ -17,6 +17,10 @@ if (isset($_SESSION['current_user'])) {
     $task = array();
     $task = getTask($_GET['id'], $user['id']);
 }
+else {
+    header("Location: todolist.php");
+    exit();
+}
 ?>
     <!-- INCLUDE HEADER -->
 <?php

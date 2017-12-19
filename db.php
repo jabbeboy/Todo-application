@@ -19,7 +19,8 @@ class Database
         try {
             $options  = array(
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
             );
             // Creates a new PDO database connection
             $this->db = new PDO(DSN, DB_USER, DB_PASS, $options);

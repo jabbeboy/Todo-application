@@ -16,6 +16,14 @@ if (isset($_POST['choose'])) {
     if (isset($_POST['rememberme'])) {
         setcookie("current_user", $_POST['name'], time() + (86400 * 30), "/");
     }
+
+    // No user exist in db, creating a new.
+    if (empty(getUser($session->getUserSession()))) {
+        $_POST['create_user'] = 'true';
+        header("Location: create_user.php");
+        exit();
+    }
+
     header("Location: todolist.php");
     exit();
 }
@@ -30,6 +38,10 @@ else if (isset($_COOKIE['current_user'])) {
     // Set current user session from cookie
     $session->setSession($_COOKIE['current_user']);
     header("Location: todolist.php");
+    exit();
+}
+else {
+    header("Location: index.php");
     exit();
 }
 

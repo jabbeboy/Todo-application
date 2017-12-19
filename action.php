@@ -75,3 +75,7 @@ if (isset($_SESSION['current_user'])) {
         exit();
     }
 }
+else {
+    header("Location: todolist.php");
+    exit();
+}

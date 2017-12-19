@@ -1,3 +1,4 @@
+CREATE DATABASE todo;
 
 CREATE TABLE todo.tasks (
   id INT (10) AUTO_INCREMENT NOT NULL ,

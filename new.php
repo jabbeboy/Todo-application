@@ -19,7 +19,7 @@ include('header.html');
                 <h3>New task</h3>
             </div>
 
-            <form id="newtask_form" method="post" action="create.php">
+            <form id="newtask_form" method="post" action="create_task.php">
 
                 <div class="panel-body">
                     <div class="form-group">
