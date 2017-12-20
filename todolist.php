@@ -32,7 +32,7 @@ $user = getUser($session->getUserSession());
         <div class="panel panel-default">
                 <div class="container">
                     <h3>
-                    <?php echo "<b>" . $session->getUserSession() . "</b>"; ?>
+                    <?php echo $session->getUserSession(); ?>
                     </h3>
                 </div>
             <hr>

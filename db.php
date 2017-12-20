@@ -66,7 +66,7 @@ class Database
         return $query->fetchAll();
     }
 
-    // Used for getting status specific tasks / Ordering with closest ending tasks DESC
+    // Query 1. Used for getting status specific tasks / Ordering with closest ending tasks ASC
     public function select_tasks($user, $status)
     {
         $statement = "SELECT id, title, description, author, added_date, end_date, status 
@@ -82,6 +82,58 @@ class Database
         return $query->fetchAll();
     }
 
+	// Query 2. Used for getting specific task in edit mode.
+    public function select_task($task_id, $user_id)
+    {
+        $statement = "SELECT id, title, description, author, added_date, end_date, status
+                      FROM tasks
+                      WHERE author = :author AND id = :task_id";
+        $param     = array(
+            ':task_id' => $task_id,
+            ':author' => $user_id
+        );
+        $query     = $this->db->prepare($statement);
+        $query->execute($param);
+        return $query->fetch();
+    }
+	
+	// Query 3. Used for updating task with new information.
+    public function update_task(array $task)
+    {
+        $statement = "UPDATE tasks 
+                      SET title = :title,
+                          description = :description,
+                          added_date = :added_date,
+                          end_date = :end_date,
+                          status = :status
+                          WHERE id = :id 
+                          AND author = :author";
+        $query     = $this->db->prepare($statement);
+        $param     = array(
+            ':id' => $task['id'],
+            ':title' => $task['title'],
+            ':description' => $task['description'],
+            ':author' => $task['author'],
+            ':added_date' => $task['added_date'],
+            ':end_date' => $task['end_date'],
+            ':status' => $task['status']
+        );
+        return $query->execute($param);
+    }
+
+	// Query 4. Used for deleting task delete from tasks 
+    public function delete_task($task_id, $user)
+    {
+        $statement = "DELETE FROM tasks WHERE id = :id AND author = :author";
+        $query     = $this->db->prepare($statement);
+        $param     = array(
+            ':id' => $task_id,
+            ':author' => $user
+        );
+        return $query->execute($param);
+    }
+	
+	// Query 5. Select task with status "ongoing" or "todo" and that has an end_date which has surpassed the current date.
     public function select_task_by_priority($author, $task_id, $status)
     {
         $statement = "SELECT id
@@ -99,36 +151,7 @@ class Database
         $query->execute($param);
         return $query->fetchAll();
     }
-
-    // Used for getting specific task in edit mode.
-    public function select_task($task_id, $user_id)
-    {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status
-                      FROM tasks
-                      WHERE author = :author AND id = :task_id";
-        $param     = array(
-            ':task_id' => $task_id,
-            ':author' => $user_id
-        );
-        $query     = $this->db->prepare($statement);
-        $query->execute($param);
-        return $query->fetch();
-    }
-
-    /*public function select_task($id, $user)
-    {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status 
-                      FROM tasks 
-                      WHERE id = :id AND author = :author";
-        $param     = array(
-            ':id' => $id,
-            ':author' => $user
-        );
-        $query     = $this->db->prepare($statement);
-        $query->execute($param);
-        return $query->fetch();
-    }*/
-
+	
     // Used for inserting using user into database-
     public function insert_user($user)
     {
@@ -162,42 +185,6 @@ class Database
             ':added_date' => $task['added_date'],
             ':end_date' => $task['end_date'],
             ':status' => $task['status']
-        );
-        return $query->execute($param);
-    }
-
-    // Used for updating task(start, finishe or edit).
-    public function update_task(array $task)
-    {
-        $statement = "UPDATE tasks 
-                      SET title = :title,
-                          description = :description,
-                          added_date = :added_date,
-                          end_date = :end_date,
-                          status = :status
-                          WHERE id = :id 
-                          AND author = :author";
-        $query     = $this->db->prepare($statement);
-        $param     = array(
-            ':id' => $task['id'],
-            ':title' => $task['title'],
-            ':description' => $task['description'],
-            ':author' => $task['author'],
-            ':added_date' => $task['added_date'],
-            ':end_date' => $task['end_date'],
-            ':status' => $task['status']
-        );
-        return $query->execute($param);
-    }
-
-    // Used for deleting task DELETE FROM tasks WHERE id = :id AND author = :author
-    public function delete_task($task_id, $user)
-    {
-        $statement = "DELETE FROM tasks WHERE id = :id AND author = :author";
-        $query     = $this->db->prepare($statement);
-        $param     = array(
-            ':id' => $task_id,
-            ':author' => $user
         );
         return $query->execute($param);
     }
