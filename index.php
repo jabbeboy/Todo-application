@@ -9,27 +9,18 @@ if (isset($_COOKIE['current_user']) || isset($_SESSION['current_user'])) {
     header("Location: redirect.php");
     exit();
 }
-
 ?>
-
     <!-- INCLUDE HEADER -->
-<?php
-include('header.html');
-?>
+<?php include('header.html'); ?>
 
 <?php
-
-// Connection could be established
-if (!checkConnection()) {
-	include "alert-danger-popup.php";
-	exit();
-}
-else {
-    ?>
-<div class="index_page" style="font-family: Arial, serif; font-size: 16px">
+//Only show if connection is active.
+if (checkConnection()) {
+    echo '<div class="index_page" style="font-family: Arial, serif; font-size: 16px">
     <div class="panel panel-default">
         <div class="container">
             <h3>Choose name</h3>
+
         </div>
         <div class="panel-body">
             <p>To use this application, enter your full name</p>
@@ -49,9 +40,12 @@ else {
             <button type="submit" name="choose" class="btn btn-success btn-lg">
                 <span class="glyphicon glyphicon-log-in"></span> Choose
             </button>
-        </form></div>
-<?php }
+        </form></div>';
 
-
-include ("footer.html");
-?>
+    include ("footer.html");
+}
+else {
+    include ("alert-danger-popup.php");
+    exit();
+}
+ ?>

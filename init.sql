@@ -1,3 +1,4 @@
+
 CREATE DATABASE todo;
 
 CREATE TABLE todo.users (
@@ -14,5 +15,5 @@ CREATE TABLE todo.tasks (
   added_date DATE DEFAULT NULL,
   end_date DATE DEFAULT NULL,
   status VARCHAR (10) NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 )ENGINE=INNODB;
