@@ -41,6 +41,11 @@ function getTask($task_id, $user)
     return db_connection()->select_task($task_id, $user);
 }
 
+function deleteUser($user)
+{
+    return db_connection()->delete_user($user);
+}
+
 function deleteTask($task_id, $user)
 {
     return db_connection()->delete_task($task_id, $user);

@@ -57,9 +57,9 @@ class Database
     {
         $statement = "SELECT * 
                       FROM tasks
-                      WHERE author = :author";
+                      WHERE author_id = :author_id";
         $param     = array(
-            ':author' => $user
+            ':author_id' => $user
         );
         $query     = $this->db->prepare($statement);
         $query->execute($param);
@@ -69,12 +69,12 @@ class Database
     // Query 1. Used for getting status specific tasks / Ordering with closest ending tasks ASC
     public function select_tasks($user, $status)
     {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status 
+        $statement = "SELECT id, title, description, author_id, added_date, end_date, status 
                       FROM tasks 
-                      WHERE author = :author
+                      WHERE author_id = :author_id
                       AND status = :status ORDER BY end_date ASC";
         $param     = array(
-            ':author' => $user,
+            ':author_id' => $user,
             ':status' => $status
         );
         $query     = $this->db->prepare($statement);
@@ -85,12 +85,12 @@ class Database
 	// Query 2. Used for getting specific task in edit mode.
     public function select_task($task_id, $user_id)
     {
-        $statement = "SELECT id, title, description, author, added_date, end_date, status
+        $statement = "SELECT id, title, description, author_id, added_date, end_date, status
                       FROM tasks
-                      WHERE author = :author AND id = :task_id";
+                      WHERE author_id = :author_id AND id = :task_id";
         $param     = array(
             ':task_id' => $task_id,
-            ':author' => $user_id
+            ':author_id' => $user_id
         );
         $query     = $this->db->prepare($statement);
         $query->execute($param);
@@ -107,13 +107,13 @@ class Database
                           end_date = :end_date,
                           status = :status
                           WHERE id = :id 
-                          AND author = :author";
+                          AND author_id = :author_id";
         $query     = $this->db->prepare($statement);
         $param     = array(
             ':id' => $task['id'],
             ':title' => $task['title'],
             ':description' => $task['description'],
-            ':author' => $task['author'],
+            ':author_id' => $task['author_id'],
             ':added_date' => $task['added_date'],
             ':end_date' => $task['end_date'],
             ':status' => $task['status']
@@ -124,11 +124,11 @@ class Database
 	// Query 4. Used for deleting task delete from tasks 
     public function delete_task($task_id, $user)
     {
-        $statement = "DELETE FROM tasks WHERE id = :id AND author = :author";
+        $statement = "DELETE FROM tasks WHERE id = :id AND author_id = :author_id";
         $query     = $this->db->prepare($statement);
         $param     = array(
             ':id' => $task_id,
-            ':author' => $user
+            ':author_id' => $user
         );
         return $query->execute($param);
     }
@@ -138,12 +138,12 @@ class Database
     {
         $statement = "SELECT id
                       FROM tasks
-                      WHERE author = :author 
+                      WHERE author_id = :author_id
                       AND id = :task_id
                       AND end_date <= CURDATE()
                       AND status IN (:status)";
         $param     = array(
-            ':author' => $author,
+            ':author_id' => $author,
             ':task_id' => $task_id,
             ':status' => $status
         );
@@ -151,7 +151,7 @@ class Database
         $query->execute($param);
         return $query->fetchAll();
     }
-	
+
     // Used for inserting using user into database-
     public function insert_user($user)
     {
@@ -171,17 +171,17 @@ class Database
                       INTO tasks (
                         title, 
                         description,
-                        author,
+                        author_id,
                         added_date,
                         end_date,
                         status
                       ) 
-                      VALUES (:title, :description, :author, :added_date, :end_date, :status)";
+                      VALUES (:title, :description, :author_id, :added_date, :end_date, :status)";
         $query     = $this->db->prepare($statement);
         $param     = array(
             ':title' => $task['title'],
             ':description' => $task['description'],
-            ':author' => $task['author'],
+            ':author_id' => $task['author_id'],
             ':added_date' => $task['added_date'],
             ':end_date' => $task['end_date'],
             ':status' => $task['status']

@@ -32,7 +32,7 @@ $user = getUser($session->getUserSession());
         <div class="panel panel-default">
                 <div class="container">
                     <h3>
-                    <?php echo $session->getUserSession(); ?>
+                    <?php echo $session->getUserSession() ?>
                     </h3>
                 </div>
             <hr>
@@ -52,10 +52,12 @@ $user = getUser($session->getUserSession());
                                     <th></th>
                                 </tr>
                             </thead>";
+
                         foreach (getTasks($user['id'], 'todo') as $task) {
                             echo "<tbody>
                                 <tr>
                                     <td style='text-align: left'>";
+
 
                             // Will only print "priority" label if $task->id match the returned id from getTaskByPriority()
                             if (getTaskByPriority($user['id'], $task->id, $task->status)[0]->id === $task->id) {
@@ -65,7 +67,7 @@ $user = getUser($session->getUserSession());
                             echo "<span class='label label-info'>Todo</span>
                                     </td>
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
+                                        <a href='#' id='task_popover' data-trigger='hover' data-toggle='popover' data-placement='auto' data-html='true'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description<p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
@@ -110,7 +112,7 @@ $user = getUser($session->getUserSession());
                         echo "<span class='label label-warning'>Ongoing</span>
                                     </td>
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
+                                        <a href='#' id='task_popover' data-trigger='hover' data-toggle='popover' data-placement='auto' data-html='true'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
@@ -149,7 +151,7 @@ $user = getUser($session->getUserSession());
                                     </td>
                             
                                     <td style='text-align: center'>
-                                        <a href='#' id='task_popover' data-trigger='focus' data-toggle='popover' data-placement='auto' data-html='true'
+                                        <a href='#' id='task_popover' data-trigger='hover' data-toggle='popover' data-placement='auto' data-html='true'
                                             title='" . $task->title . "'
                                             data-content='<p>$task->description</p><p><b>Date added: </b>$task->added_date</p><p><b>End date: </b>$task->end_date</p>
                                             </p>'>$task->title
@@ -173,7 +175,7 @@ $user = getUser($session->getUserSession());
                 }
                 ?>
 
-                <a type='submit' href="action.php?action=exit" name='exit' class='btn btn-danger btn-lg'>
+                <a type='submit' href="action.php?action=exit" name='exit' class='btn btn-warning btn-lg'>
                     <span class='glyphicon glyphicon-log-out'></span> Exit
                 </a>
 

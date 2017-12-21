@@ -10,12 +10,13 @@ if (!$session->sessionIsSet()) {
 
 // Get user details
 $user = getUser($session->getUserSession());
+var_dump($user);
 
 if (isset($_POST['addtask'])) {
     $task = array(
         'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
         'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
-        'author' => $user['id'],
+        'author_id' => $user['id'],
         'added_date' => date("Y-m-d"),
         'end_date' => $_POST['end_date'],
         'status' => 'todo'

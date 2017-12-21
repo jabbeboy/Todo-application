@@ -24,7 +24,7 @@ if (isset($_SESSION['current_user'])) {
         'id' => $task->id,
         'title' => $task->title,
         'description' => $task->description,
-        'author' => $task->author,
+        'author_id' => $task->author_id,
         'added_date' => $task->added_date,
         'end_date' => $task->end_date,
         'status' => $task->status
@@ -65,7 +65,7 @@ if (isset($_SESSION['current_user'])) {
             'id' => $_POST['id'],
             'title' => htmlspecialchars(strip_tags($_POST['title'], ENT_QUOTES)),
             'description' => nl2br(htmlentities($_POST['description'], ENT_QUOTES, 'UTF-8')),
-            'author' => $user['id'],
+            'author_id' => $user['id'],
             'added_date' => date("Y-m-d"),
             'end_date' => $_POST['end_date'],
             'status' => $_POST['status']

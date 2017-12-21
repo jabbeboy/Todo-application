@@ -4,8 +4,7 @@ CREATE TABLE todo.users (
   id INT(10) AUTO_INCREMENT NOT NULL,
   name VARCHAR (25) NOT NULL,
   PRIMARY KEY(id)
-);
-
+)ENGINE=INNODB;
 
 CREATE TABLE todo.tasks (
   id INT (10) AUTO_INCREMENT NOT NULL ,
@@ -16,6 +15,4 @@ CREATE TABLE todo.tasks (
   end_date DATE DEFAULT NULL,
   status VARCHAR (10) NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (author_id) REFERENCES users(name)
-);
-
+)ENGINE=INNODB;
