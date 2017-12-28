@@ -22,7 +22,6 @@ else {
     exit();
 }
 ?>
-    <!-- INCLUDE HEADER -->
 <?php
 include('header.html');
 ?>
@@ -108,7 +107,6 @@ include('header.html');
         </div>
     </div>
 
-    <!-- INCLUDE FOOTER -->
 <?php
 include('footer.html');
 ?>

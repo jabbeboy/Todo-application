@@ -1,4 +1,4 @@
-
+/* Copy and run queries in DBMS */
 CREATE DATABASE todo;
 
 CREATE TABLE todo.users (

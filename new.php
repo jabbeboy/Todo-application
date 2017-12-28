@@ -7,10 +7,7 @@ if (!$session->sessionIsSet()) {
     exit();
 }
 ?>
-    <!-- INCLUDE HEADER -->
-<?php
-include('header.html');
-?>
+<?php include('header.html'); ?>
 
     <div class="task_page" style="font-family: Arial, serif; font-size: 16px">
 
@@ -57,7 +54,4 @@ include('header.html');
             </form>
         </div>
 
-        <!-- INCLUDE FOOTER -->
-<?php
-include('footer.html');
-?>
+<?php include('footer.html'); ?>

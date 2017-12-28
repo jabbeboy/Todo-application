@@ -4,8 +4,6 @@ session_start();
 require('functions.php');
 require('session.php');
 
-
-
 // 1. Access by choosing name
 if (isset($_POST['choose'])) {
 

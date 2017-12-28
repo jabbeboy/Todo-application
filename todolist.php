@@ -25,7 +25,7 @@ if (empty(getUser($session->getUserSession()))) {
 $user = getUser($session->getUserSession());
 
 ?>
-    <!-- INCLUDE HEADER -->
+
 <?php include('header.html'); ?>
     <div class="todo_page" style="font-family: Arial, serif; font-size: 16px">
 
@@ -185,7 +185,5 @@ $user = getUser($session->getUserSession());
 
             </div>
         </div>
-    </div>
 
-    <!-- INCLUDE FOOTER -->
 <?php include('footer.html'); ?>

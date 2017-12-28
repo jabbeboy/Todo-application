@@ -10,13 +10,15 @@ if (isset($_COOKIE['current_user']) || isset($_SESSION['current_user'])) {
     exit();
 }
 ?>
-    <!-- INCLUDE HEADER -->
+
 <?php include('header.html'); ?>
+
+    <div class="index_page" style="font-family: Arial, serif; font-size: 16px">
 
 <?php
 //Only show if connection is active.
 if (checkConnection()) {
-    echo '<div class="index_page" style="font-family: Arial, serif; font-size: 16px">
+    echo '
     <div class="panel panel-default">
         <div class="container">
             <h3>Choose name</h3>
@@ -41,11 +43,13 @@ if (checkConnection()) {
                 <span class="glyphicon glyphicon-log-in"></span> Choose
             </button>
         </form></div>';
-
-    include ("footer.html");
 }
 else {
     include ("alert-danger-popup.php");
     exit();
 }
- ?>
+
+include ("footer.html");
+s?>
+
+

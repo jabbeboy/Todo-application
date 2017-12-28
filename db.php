@@ -133,7 +133,7 @@ class Database
         return $query->execute($param);
     }
 	
-	// Query 5. Select task with status "ongoing" or "todo" and that has an end_date which has surpassed the current date.
+	// Query 5. Select task with status "ongoing" or "to do" and that has an end_date which has surpassed the current date.
     public function select_task_by_priority($author, $task_id, $status)
     {
         $statement = "SELECT id
