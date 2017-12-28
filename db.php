@@ -167,16 +167,14 @@ class Database
     // Used for creating new task
     public function insert_task(array $task)
     {
-        $statement = "INSERT
-                      INTO tasks (
+        $statement = "INSERT INTO tasks (
                         title, 
                         description,
                         author_id,
                         added_date,
                         end_date,
                         status
-                      ) 
-                      VALUES (:title, :description, :author_id, :added_date, :end_date, :status)";
+                      ) VALUES (:title, :description, :author_id, :added_date, :end_date, :status)";
         $query     = $this->db->prepare($statement);
         $param     = array(
             ':title' => $task['title'],

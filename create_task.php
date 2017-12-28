@@ -10,7 +10,6 @@ if (!$session->sessionIsSet()) {
 
 // Get user details
 $user = getUser($session->getUserSession());
-var_dump($user);
 
 if (isset($_POST['addtask'])) {
     $task = array(

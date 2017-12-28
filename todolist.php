@@ -39,11 +39,11 @@ $user = getUser($session->getUserSession());
             <div class="panel-body">
                 <?php // No tasks created for the chosen name, print out alert.
                 if (empty(getAllTasks($user['id']))) {
-                    echo "<div class='alert alert-info'>No task added..</div>";
+                    echo "<div class='alert alert-info'>Empty list...</div>";
                 } else {
 
                     if (!empty(getTasks($user['id'], 'todo'))) {
-                        // TO-DO TABLE
+
                         echo "<table class='table table-borderless' style='font-size: 18px;' >
                             <thead>
                                 <tr>
