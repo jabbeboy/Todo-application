@@ -1,8 +1,13 @@
 <?php
 session_start();
 
-require('functions.php');
-require('session.php');
+
+// Define application ROOT directory
+define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+define('APP', ROOT . 'resources' . DIRECTORY_SEPARATOR);
+
+// Load config
+require APP . 'conf/conf.php';
 
 // 2. Access by saved cookie
 if (isset($_COOKIE['current_user']) || isset($_SESSION['current_user'])) {
@@ -11,7 +16,7 @@ if (isset($_COOKIE['current_user']) || isset($_SESSION['current_user'])) {
 }
 ?>
 
-<?php include('header.html'); ?>
+<?php include(APP . '/templates/header.html'); ?>
 
     <div class="index_page" style="font-family: Arial, serif; font-size: 16px">
 
@@ -45,11 +50,11 @@ if (checkConnection()) {
         </form></div>';
 }
 else {
-    include ("alert-danger-popup.php");
+    include (APP . "/templates/alert-danger-popup.php");
     exit();
 }
 
-include ("footer.html");
-s?>
+include (APP. "templates/footer.html");
+?>
 
 
